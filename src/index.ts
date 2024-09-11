@@ -3,6 +3,10 @@ import 'dotenv/config'
 import morgan = require('morgan')
 import helmet from 'helmet'
 const app = express();
+import { AppDataSource } from "./data-source"
+import { User } from "./entity/User"
+
+
 const port = process.env.PORT
 
 
@@ -18,7 +22,7 @@ app.get('/', (req, res) => {
     })
 })
 
-
+AppDataSource.initialize().then(() => console.log('db connected')).catch(error => console.log(error))
 
 
 
