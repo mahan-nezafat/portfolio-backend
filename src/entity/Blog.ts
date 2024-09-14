@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
-@Entity
+@Entity()
 export class Blog {
     @PrimaryGeneratedColumn()
     id: number;
@@ -21,17 +21,15 @@ export class Blog {
     @Column()
     views: number;
     @Column()
-    category;
+    category: string;
     @Column()
-    readtime;
+    readtime: number;
     @Column()
-    date;
+    author_summary: string;
     @Column()
-    summary;
+    content: Array<object>;
     @Column()
-    content;
+    comments_id: number;
     @Column()
-    comments_id;
-    @Column()
-    language;
+    language: string;
 }
