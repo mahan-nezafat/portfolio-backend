@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm"
+import { User } from "./User"
 
 @Entity()
 
@@ -7,8 +8,9 @@ export class Comment {
     id: number
     @Column()
     date: Date
-    @Column()
-    author: string
+    @ManyToOne(() => User, (author) => author.comments)
+    author: User
+
     @Column()
     content: string
     @Column()

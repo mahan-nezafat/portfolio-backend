@@ -1,8 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm"
+import { User } from "./User"
 
 @Entity()
 
-export class Comment {
+export class Project {
     @PrimaryGeneratedColumn()
     id: number
     @Column()
@@ -15,5 +16,6 @@ export class Comment {
     thumbnail_src: string
     @Column()
     video_src: string
-
+    @ManyToOne(() => User, (author) => author.projects)
+    author: User
 }
