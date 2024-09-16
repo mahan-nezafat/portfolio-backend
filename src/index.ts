@@ -5,7 +5,9 @@ import helmet from "helmet";
 const app = express();
 import { AppDataSource } from "./data-source";
 import { User } from "./entities/User";
-
+import { Blog } from "./entities/Blog";
+import { Comment } from "./entities/Comment";
+import { DataSource } from "typeorm";
 const port = process.env.PORT;
 
 app.use(express.json());
@@ -13,9 +15,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 app.use(helmet());
 
-AppDataSource.initialize()
-    .then(() => console.log("db connected"))
-    .catch((error) => console.log(error));
 
 app.get("/", (req, res) => {
     return res.status(200).json({

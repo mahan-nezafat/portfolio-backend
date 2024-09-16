@@ -1,19 +1,22 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm"
-import { User } from "./User"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BaseEntity, CreateDateColumn, UpdateDateColumn, JoinColumn } from "typeorm";
+import { User } from "./User";
 
 @Entity()
-
-export class Comment {
+export class Comment extends BaseEntity {
     @PrimaryGeneratedColumn()
-    id: number
+    id: number;
     @Column()
-    date: Date
-    @ManyToOne(() => User, (author) => author.comments)
-    author: User
+    content: string;
+    // @Column()
+    // parent_id: number
+    @CreateDateColumn()
+    created_at: Date
+    @UpdateDateColumn()
+    updated_at: Date
 
-    @Column()
-    content: string
-    @Column()
-    parent_id: number
-
+    @ManyToOne(() => User, (user) => user.comments)
+    @JoinColumn({
+        name: 'author_id'
+    })
+    user: User;
 }

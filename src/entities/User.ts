@@ -1,11 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, BaseEntity, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { Comment } from "./Comment";
 import { Project } from "./Project";
 import { Blog } from "./Blog";
 import { Service } from "./Service";
 
 @Entity()
-export class User {
+export class User extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -26,13 +26,18 @@ export class User {
     role: string;
     @Column()
     phone_number: string;
-    @OneToMany(() => Comment, (comment) => comment.author)
+    @CreateDateColumn()
+    created_at: Date
+    @UpdateDateColumn()
+    updated_at: Date 
+    
+    @OneToMany(() => Comment, (comment) => comment.user)
     comments: Comment[];
 
-    @OneToMany(() => Project, (project) => project.author)
+    @OneToMany(() => Project, (project) => project.user)
     projects: Project[];
-    @OneToMany(() => Service, (service) => service.author)
+    @OneToMany(() => Service, (service) => service.user)
     services: Service[];
-    @OneToMany(() => Blog, (blog) => blog.author)
+    @OneToMany(() => Blog, (blog) => blog.user)
     blogs: Blog[];
 }
