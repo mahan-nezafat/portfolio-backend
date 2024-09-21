@@ -8,6 +8,7 @@ import { Blog } from "./entities/Blog";
 import { Comment } from "./entities/Comment";
 import { DataSource } from "typeorm";
 import blogsRouter from "./api/routes/blogs.router";
+import projectsRouter from "./api/routes/projects.router";
 const port = process.env.PORT;
 
 const app = express();
@@ -18,7 +19,7 @@ app.use(morgan("dev"));
 app.use(helmet());
 app.use('/', router)
 app.use('/blogs', blogsRouter)
-// app.use('/projects', projectsRouter)
+app.use('/projects', projectsRouter)
 // app.use('/services', servicesRouter)
 // app.use('/panel', panelRouter)
 // app.use('/auth', authRouter)
