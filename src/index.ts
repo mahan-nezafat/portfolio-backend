@@ -9,6 +9,7 @@ import { Comment } from "./entities/Comment";
 import { DataSource } from "typeorm";
 import blogsRouter from "./api/routes/blogs.router";
 import projectsRouter from "./api/routes/projects.router";
+import servicesRouter from "./api/routes/services.router";
 const port = process.env.PORT;
 
 const app = express();
@@ -20,7 +21,7 @@ app.use(helmet());
 app.use('/', router)
 app.use('/blogs', blogsRouter)
 app.use('/projects', projectsRouter)
-// app.use('/services', servicesRouter)
+app.use('/services', servicesRouter)
 // app.use('/panel', panelRouter)
 // app.use('/auth', authRouter)
 
