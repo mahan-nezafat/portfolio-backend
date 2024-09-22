@@ -2,7 +2,7 @@ import express from 'express';
 const blogsRouter = express.Router()
 
 blogsRouter.get('/', getAllBlogs)
-blogsRouter.get('/:id', getOneBlog)
+blogsRouter.get('/:id', getAllBlogs)
 
 
 export default blogsRouter
