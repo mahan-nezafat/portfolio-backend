@@ -5,7 +5,7 @@ import { User } from "./User";
 export class Comment extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
-    @Column()
+    @Column("varchar")
     content: string;
     // @Column()
     // parent_id: number

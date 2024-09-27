@@ -9,22 +9,22 @@ export class User extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column("varchar")
     first_name: string;
 
-    @Column()
+    @Column("varchar")
     last_name: string;
 
-    @Column()
+    @Column("int4")
     age: number;
 
-    @Column()
+    @Column("varchar")
     username: string;
-    @Column()
+    @Column("varchar")
     password: string;
-    @Column()
+    @Column("varchar")
     role: string;
-    @Column()
+    @Column("varchar")
     phone_number: string;
     @CreateDateColumn()
     created_at: Date
