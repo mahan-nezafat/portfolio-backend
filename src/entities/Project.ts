@@ -5,15 +5,15 @@ import { User } from "./User";
 export class Project extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
-    @Column()
+    @Column("varchar")
     name: string;
-    @Column()
+    @Column("varchar")
     description: string;
-    @Column()
+    @Column("varchar")
     link: string;
-    @Column()
+    @Column("varchar")
     thumbnail_src: string;
-    @Column()
+    @Column("varchar")
     video_src: string;
     @CreateDateColumn()
     created_at: Date

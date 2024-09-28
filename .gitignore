@@ -5,4 +5,10 @@ build/
 tmp/
 temp/
 .env
-*.js
+<<<<<<< HEAD
+
+=======
+src/*/*.js
+src/*.js
+src/*/*/*.js
+>>>>>>> 9318eb31d512ac53a68c8414ffe3eebe2924da68

@@ -6,9 +6,9 @@ export class Service extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column("varchar")
     content: string;
-    @Column()
+    @Column("int4")
     price: number;
     @CreateDateColumn()
     created_at: Date
