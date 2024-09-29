@@ -49,12 +49,11 @@ export class Blog extends BaseEntity {
     @UpdateDateColumn()
     updated_at: Date
     @ManyToOne(() => User, (user) => user.blogs)
-    
     @JoinColumn({
         name: 'author_id'
     })
     user: User
 
-    @OneToMany(() => Comment, (comment) => comment.user)
+    @OneToMany(() => Comment, (comment) => comment.blog)
     comments: Comment[];
 }
