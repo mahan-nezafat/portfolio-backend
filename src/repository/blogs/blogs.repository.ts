@@ -1,8 +1,11 @@
+import { getRepository } from "typeorm";
 import { Blog } from "../../entities/Blog";
-import { User } from "../../entities/User";
 import { getOneUser } from "../users/users.repository";
 import { BlogInstance, IBlog, status } from "./interface.blogs";
+import { AppDataSource } from "../../data-source";
 
+
+// get all blogs
 export const getAllBlogs = async (): Promise<Array<IBlog>> => {
     try {
         const blogs = await Blog.find({
@@ -26,7 +29,7 @@ export const getAllBlogs = async (): Promise<Array<IBlog>> => {
         console.log(error);
     }
 };
-
+// get one blog by id
 export const getOneBlog = async (id: number): Promise<IBlog> => {
     try {
         const blog = await Blog.findOne({
@@ -58,7 +61,7 @@ export const getOneBlog = async (id: number): Promise<IBlog> => {
         console.log(error);
     }
 };
-
+// create a blog 
 export const addOneBlog = async (
     title: string,
     status: status,
@@ -106,39 +109,103 @@ export const addOneBlog = async (
     }
 };
 
+// update a blog by id
 export const updateOneBlog = async (
     id: number,
-    status: status
-    // id: number,
-    // title: string,
-    // status: status,
-    // thumbnail: string,
-    // category: string,
-    // readtime: number,
-    // author_summary: string,
-    // content: object[],
-    // language: string
+    updatedData:{
+    title?: string,
+    status?: status,
+    thumbnail?: string,
+    category?: string,
+    readtime?: number,
+    author_summary?: string,
+    content?: object[],
+    language?: string
+    }
 ): Promise<object> => {
-    // const newBlog = {
-    //     id,
-    //     title,
-    //     status,
-    //     thumbnail,
-    //     category,
-    //     readtime,
-    //     author_summary,
-    //     content,
-    //     language,
-    // };
+    
     try {
-        const updatedBlog = await Blog.update(id, {status: status});
+        const updatedBlog = await Blog.update(id, {
+            status: updatedData.status,
+            title: updatedData.title,
+            thumbnail: updatedData.thumbnail,
+            category: updatedData.category,
+            readtime: updatedData.readtime,
+            author_summary: updatedData.author_summary,
+            content: updatedData.content,
+            language: updatedData.language,
+        });
         return updatedBlog;
     } catch (error) {
         console.log(error);
     }
 };
 
+// delete a blog by id
 export const deleteOneBlog = async (id: number) => {
-    const result = await Blog.delete(id)
+    try {
+        const result = await Blog.delete(id);
     return result;
+    } catch (error) {
+        console.log(error)
+    }
+    
+};
+
+// filter recet blogs
+export const getRecentBlogs = async (): Promise<Array<IBlog>> => {
+    try {
+        const blogs = await Blog.find({
+            order: {
+             created_at: "DESC"
+            }
+             
+         })
+         console.log(blogs)
+         return blogs
+    } catch (error) {
+        console.log(error)
+    }
+    
+}
+
+// filter oldest blogs
+export const getOldestBlogs = async (): Promise<Array<IBlog>> => {
+    try {
+        const blogs = await Blog.find({
+            order: {
+             created_at: "ASC"
+            }
+             
+         })
+         console.log(blogs)
+         return blogs
+    } catch (error) {
+        console.log(error)
+    }
+    
+}
+
+// increment upvotes
+
+export const incrementUpvotes = async (id: number) => {
+    try {
+        const result = await AppDataSource.getRepository(Blog).increment({id: id}, "upvote", 1)
+        console.log(result)
+        return result
+    } catch (error) {
+        console.log(error)
+    }
+   
+}
+// increment views
+
+export const incrementViews = async (id: number) => {
+    try {
+        const result = await AppDataSource.getRepository(Blog).increment({id: id}, "views", 1)
+        console.log(result)
+        return result
+    } catch (error) {
+        console.log(error)
+    }
 }
