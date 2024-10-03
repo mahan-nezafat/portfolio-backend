@@ -1,6 +1,6 @@
 import { getRepository } from "typeorm";
 import { Blog } from "../../entities/Blog";
-import { getOneUser } from "../users/users.repository";
+import { getOneUser } from "../users/repository.users";
 import { BlogInstance, IBlog, status } from "./interface.blogs";
 import { AppDataSource } from "../../data-source";
 

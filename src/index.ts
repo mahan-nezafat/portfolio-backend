@@ -7,7 +7,7 @@ import projectsRouter from "./api/routes/projects.router";
 import servicesRouter from "./api/routes/services.router";
 import authRouter from "./api/routes/auth.router";
 import panelRouter from "./api/routes/panel.router";
-import { addOneBlog, deleteOneBlog, getAllBlogs, getOneBlog, getRecentBlogs, incrementUpvotes, incrementViews, updateOneBlog } from "./repository/blogs/blogs.repository";
+import { addOneBlog, deleteOneBlog, getAllBlogs, getOneBlog, getRecentBlogs, incrementUpvotes, incrementViews, updateOneBlog } from "./repository/blogs/repository.blogs";
 import { connectToDb } from "./api/handlers/adapter";
 import { status } from "./repository/blogs/interface.blogs";
 
@@ -29,9 +29,7 @@ app.use("auth", authRouter);
 // connectToDb()
 const start = async () => {
     await connectToDb();
-    // await getAllBlogs();
-    await incrementViews(11)
-    // const result = await updateOneBlog(11, {
+   
     //     title: "how to advertise cheaply and effectively?",
     //     status: status.published,
     //     category: "marketing",
