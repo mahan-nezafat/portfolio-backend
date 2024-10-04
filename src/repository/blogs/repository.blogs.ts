@@ -1,4 +1,3 @@
-import { getRepository } from "typeorm";
 import { Blog } from "../../entities/Blog";
 import { getOneUser } from "../users/repository.users";
 import { BlogInstance, IBlog, status } from "./interface.blogs";
@@ -55,7 +54,7 @@ export const getOneBlog = async (id: number): Promise<IBlog> => {
             },
         });
 
-        console.log(blog, typeof blog);
+        // console.log(blog, typeof blog);
         return blog;
     } catch (error) {
         console.log(error);

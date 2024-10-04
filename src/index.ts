@@ -10,6 +10,7 @@ import panelRouter from "./api/routes/panel.router";
 import { addOneBlog, deleteOneBlog, getAllBlogs, getOneBlog, getRecentBlogs, incrementUpvotes, incrementViews, updateOneBlog } from "./repository/blogs/repository.blogs";
 import { connectToDb } from "./api/handlers/adapter";
 import { status } from "./repository/blogs/interface.blogs";
+import { addOneComment, getOneComment } from "./repository/comments/repository.comments";
 
 const port = process.env.PORT;
 
@@ -29,24 +30,10 @@ app.use("auth", authRouter);
 // connectToDb()
 const start = async () => {
     await connectToDb();
-   
-    //     title: "how to advertise cheaply and effectively?",
-    //     status: status.published,
-    //     category: "marketing",
-    //     readtime: 360,
-    //     language: "en",
-    //     content: [
-    //         {
-    //             header: "how to advertise cheaply and effectively?"
-    //         },
-    //         {
-    //             paragraph: "one of the cheap strategies of marketing is seo"
-    //         }
-    //     ]
-    // })
-    // await deleteOneBlog(12)
-    // console.log(result)
-    // await getRecentBlogs();
+    // const comment = await getOneComment(13)
+
+//    console.log(comment)
+
 };
 
 start();
