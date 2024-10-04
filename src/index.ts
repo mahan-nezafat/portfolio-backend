@@ -12,6 +12,7 @@ import { connectToDb } from "./api/handlers/adapter";
 import { status } from "./repository/blogs/interface.blogs";
 import { addOneComment, getOneComment } from "./repository/comments/repository.comments";
 import { addOneProject, deleteOneProject, getAllProjects, getOneProject, updateOneProject } from "./repository/projects/repository.projects";
+import { addOneService } from "./repository/services/repository.services";
 
 const port = process.env.PORT;
 
@@ -31,7 +32,21 @@ app.use("auth", authRouter);
 // connectToDb()
 const start = async () => {
     await connectToDb();
-    const result = await deleteOneProject(1)
+    const result = await addOneService(8, {
+        name: "designing web applictions",
+        price: 100_000_000,
+        content: [
+            {
+                tech: "html, css, js, react, nodejs"
+            },
+            {
+                garanty: "1 month"
+            },
+            
+        ],
+        thumbnailSrc: "images/services/1"
+    }) 
+    // await deleteOneProject(1)
    
 
    console.log(result)
