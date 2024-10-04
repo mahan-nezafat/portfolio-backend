@@ -11,6 +11,7 @@ import { addOneBlog, deleteOneBlog, getAllBlogs, getOneBlog, getRecentBlogs, inc
 import { connectToDb } from "./api/handlers/adapter";
 import { status } from "./repository/blogs/interface.blogs";
 import { addOneComment, getOneComment } from "./repository/comments/repository.comments";
+import { addOneProject, deleteOneProject, getAllProjects, getOneProject, updateOneProject } from "./repository/projects/repository.projects";
 
 const port = process.env.PORT;
 
@@ -30,9 +31,10 @@ app.use("auth", authRouter);
 // connectToDb()
 const start = async () => {
     await connectToDb();
-    // const comment = await getOneComment(13)
+    const result = await deleteOneProject(1)
+   
 
-//    console.log(comment)
+   console.log(result)
 
 };
 

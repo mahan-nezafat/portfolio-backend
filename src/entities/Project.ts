@@ -8,7 +8,7 @@ export class Project extends BaseEntity {
     @Column("varchar")
     name: string;
     @Column("varchar")
-    description: string;
+    description: string; 
     @Column("varchar")
     link: string;
     @Column("varchar")
