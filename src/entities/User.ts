@@ -1,9 +1,17 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, BaseEntity, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    OneToMany,
+    BaseEntity,
+    CreateDateColumn,
+    UpdateDateColumn,
+} from "typeorm";
 import { Comment } from "./Comment";
 import { Project } from "./Project";
 import { Blog } from "./Blog";
 import { Service } from "./Service";
-
+import { role } from "../repository/users/interface.users";
 @Entity()
 export class User extends BaseEntity {
     @PrimaryGeneratedColumn()
@@ -15,22 +23,43 @@ export class User extends BaseEntity {
     @Column("varchar")
     last_name: string;
 
-    @Column("int4")
+    @Column({
+        type: "int",
+        nullable: true
+    })
     age: number;
 
-    @Column("varchar")
+    @Column({
+        type: "varchar",
+        nullable: true
+    })
     username: string;
     @Column("varchar")
     password: string;
     @Column("varchar")
-    role: string;
+    role: role;
+    @Column({
+        type: "int",
+        nullable: true
+    })
+    otp: number
+    @Column({
+        type: "string",
+        nullable: true
+    })
+    email: string
     @Column("varchar")
     phone_number: string;
+    @Column({
+        type: "varchar",
+        nullable: true
+    })
+    request: string
     @CreateDateColumn()
-    created_at: Date
+    created_at: Date;
     @UpdateDateColumn()
-    updated_at: Date 
-    
+    updated_at: Date;
+
     @OneToMany(() => Comment, (comment) => comment.user)
     comments: Comment[];
 
