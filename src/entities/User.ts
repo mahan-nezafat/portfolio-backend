@@ -34,9 +34,12 @@ export class User extends BaseEntity {
         nullable: true
     })
     username: string;
-    @Column("varchar")
-    password: string;
-    @Column("varchar")
+   
+    
+    @Column({
+        type: "varchar",
+        nullable: false
+    })
     role: role;
     @Column({
         type: "int",
@@ -44,11 +47,14 @@ export class User extends BaseEntity {
     })
     otp: number
     @Column({
-        type: "string",
+        type: "varchar",
         nullable: true
     })
     email: string
-    @Column("varchar")
+    @Column({
+        type: "varchar",
+        nullable: false
+    })
     phone_number: string;
     @Column({
         type: "varchar",
