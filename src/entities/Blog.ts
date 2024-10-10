@@ -1,21 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, BaseEntity, JoinColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { User } from "./User";
 import { Comment } from "./Comment";
- 
-export interface IBlog  {
-    id: number;
-    title: string;
-    status: string;
-    thumbnail: string;
-    upvote: number;
-    views: number;
-    category: string;
-    readtime: number;
-    author_summary: string;
-    content: object[];
-    language: string;
-   
-}
+import { status } from "../repository/blogs/interface.blogs";
+
 @Entity()
 export class Blog extends BaseEntity {
     @PrimaryGeneratedColumn()
@@ -24,7 +11,7 @@ export class Blog extends BaseEntity {
     title: string;
     
     @Column("varchar")
-    status: string;
+    status: status;
    
     @Column("varchar")
     thumbnail: string;
@@ -39,7 +26,11 @@ export class Blog extends BaseEntity {
     readtime: number;
     @Column("varchar")
     author_summary: string;
-    @Column("simple-array")
+
+    @Column({
+        type: 'jsonb',
+        nullable: true
+    })
     content: object[]
    
     @Column("varchar")

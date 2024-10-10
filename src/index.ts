@@ -7,9 +7,40 @@ import projectsRouter from "./api/routes/projects.router";
 import servicesRouter from "./api/routes/services.router";
 import authRouter from "./api/routes/auth.router";
 import panelRouter from "./api/routes/panel.router";
-import { addOneBlog, deleteOneBlog, getAllBlogs, getOneBlog, updateOneBlog } from "./repository/blogs/blogs.repository";
+import {
+    addOneBlog,
+    deleteOneBlog,
+    getAllBlogs,
+    getOneBlog,
+    getRecentBlogs,
+    incrementUpvotes,
+    incrementViews,
+    updateOneBlog,
+} from "./repository/blogs/repository.blogs";
 import { connectToDb } from "./api/handlers/adapter";
 import { status } from "./repository/blogs/interface.blogs";
+import {
+    addOneComment,
+    getOneComment,
+} from "./repository/comments/repository.comments";
+import {
+    addOneProject,
+    deleteOneProject,
+    getAllProjects,
+    getOneProject,
+    updateOneProject,
+} from "./repository/projects/repository.projects";
+import { addOneService } from "./repository/services/repository.services";
+import {
+    addAdminUser,
+    addOneUser,
+    deleteOneUser,
+    isUserExist,
+    updateOneUser,
+    updateOtpCode,
+    updateUserRole,
+} from "./repository/users/repository.users";
+import { role } from "./repository/users/interface.users";
 
 const port = process.env.PORT;
 
@@ -29,10 +60,7 @@ app.use("auth", authRouter);
 // connectToDb()
 const start = async () => {
     await connectToDb();
-    // await getAllBlogs();
     
-    const result = await deleteOneBlog(12)
-    console.log(result)
 };
 
 start();

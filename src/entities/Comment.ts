@@ -9,7 +9,7 @@ export class Comment extends BaseEntity {
     @Column("varchar")
     content: string;
     // @Column()
-    // parent_id: number
+    // parent_id: number 
     @CreateDateColumn()
     created_at: Date
     @UpdateDateColumn()

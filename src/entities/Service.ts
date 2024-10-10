@@ -1,22 +1,38 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BaseEntity, CreateDateColumn, UpdateDateColumn, JoinColumn } from "typeorm";
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    ManyToOne,
+    BaseEntity,
+    CreateDateColumn,
+    UpdateDateColumn,
+    JoinColumn,
+} from "typeorm";
 import { User } from "./User";
 
 @Entity()
 export class Service extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
-
     @Column("varchar")
-    content: string;
-    @Column("int4")
+    name: string
+    @Column("varchar")
+    thumbnail_src: string
+    @Column({
+        type: "jsonb",
+        nullable: true,
+    })
+    content: object[];
+
+    @Column("int")
     price: number;
     @CreateDateColumn()
-    created_at: Date
+    created_at: Date;
     @UpdateDateColumn()
-    updated_at: Date
+    updated_at: Date;
     @ManyToOne(() => User, (user) => user.services)
     @JoinColumn({
-        name: 'author_id'
+        name: "author_id",
     })
     user: User;
 }
