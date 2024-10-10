@@ -185,7 +185,7 @@ export const getOldestBlogs = async (): Promise<Array<IBlog>> => {
     
 }
 
-// increment upvotes
+// increment upvotes 
 
 export const incrementUpvotes = async (id: number) => {
     try {
