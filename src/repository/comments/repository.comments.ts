@@ -3,6 +3,8 @@ import { getOneBlog } from "../blogs/repository.blogs";
 import { getOneUser } from "../users/repository.users";
 import { IComment } from "./interface.comments";
 
+// add one comment  
+
 export const addOneComment = async (commentPayLoad: {
     authorId: number;
     blogId: number;
@@ -22,7 +24,7 @@ export const addOneComment = async (commentPayLoad: {
         console.log(error);
     }
 };
-
+//get one comment by id
 export const getOneComment = async (id: number): Promise<object> => {
     try {
         const comment = await Comment.find({

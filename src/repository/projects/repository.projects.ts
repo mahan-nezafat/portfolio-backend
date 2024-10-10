@@ -2,6 +2,8 @@ import { Project } from "../../entities/Project";
 import { getOneUser } from "../users/repository.users";
 import { IProject } from "./interface.projects";
 
+// get all projects
+
 export const getAllProjects = async (): Promise<object> => {
     try {
         const projects = await Project.find({});
@@ -10,7 +12,7 @@ export const getAllProjects = async (): Promise<object> => {
         console.log(error);
     }
 };
-
+// get one project by id
 export const getOneProject = async (id: number): Promise<object> => {
     try {
         const project = await Project.findBy({ id });
@@ -19,7 +21,7 @@ export const getOneProject = async (id: number): Promise<object> => {
         console.log(error);
     }
 };
-
+// add one project
 export const addOneProject = async (
     authorId: number,
     projectPayLoad: {
@@ -45,7 +47,7 @@ export const addOneProject = async (
         console.log(error);
     }
 };
-
+// update one project by id
 export const updateOneProject = async (
     id: number,
     updatedData: {
@@ -70,7 +72,7 @@ export const updateOneProject = async (
         console.log(error);
     }
 };
-
+// delete one project by id
 export const deleteOneProject = async (id: number): Promise<object> => {
     try {
         const deletedProject = await Project.delete(id);

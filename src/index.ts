@@ -60,17 +60,7 @@ app.use("auth", authRouter);
 // connectToDb()
 const start = async () => {
     await connectToDb();
-    // const user = await addAdminUser({
-    //     firstName: "mahan",
-    //     lastName: "nezafat",
-    //     phoneNumber: "09053217299",
-
-    // })
-    // const result = await deleteOneUser(10)
-    // isUserExist(11)
-    // await deleteOneProject(1)
-
-    // console.log(result);
+    
 };
 
 start();

@@ -2,6 +2,8 @@ import { Service } from "../../entities/Service";
 import { getOneUser } from "../users/repository.users";
 import { IService } from "./interface.services";
 
+// get all services
+
 export const getAllServices = async (): Promise<object> => {
     try {
         const services = await Service.find({});
@@ -10,7 +12,7 @@ export const getAllServices = async (): Promise<object> => {
         console.log(error);
     }
 };
-
+// get one service by id
 export const getOneService = async (id: number): Promise<object> => {
     try {
         const service = await Service.findBy({ id });
@@ -19,7 +21,7 @@ export const getOneService = async (id: number): Promise<object> => {
         console.log(error);
     }
 };
-
+// add one service
 export const addOneService = async (
     authorId: number,
     servicePayLoad: {
@@ -43,7 +45,7 @@ export const addOneService = async (
         console.log(error);
     }
 };
-
+// update one service by id 
 export const updateOneService = async (
     id: number,
     updatedData: {
@@ -65,7 +67,7 @@ export const updateOneService = async (
         console.log(error);
     }
 };
-
+// delete one service by id
 export const deleteOneService = async (id: number): Promise<object> => {
     try {
         const deletedService = await Service.delete(id);
