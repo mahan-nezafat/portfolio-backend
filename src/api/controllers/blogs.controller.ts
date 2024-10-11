@@ -19,7 +19,6 @@ export const getBlogs = async (req:Request, res:Response): Promise<Array<IBlog>>
             message: 'ok',
             data: blogs
         })
-        console.log('gg')
         await disconnectFromDb()
         return blogs 
     } catch (error) {
@@ -31,10 +30,10 @@ export const getBlogs = async (req:Request, res:Response): Promise<Array<IBlog>>
 
 export const getBlog = async (req:Request, res:Response): Promise<IBlog> => {
     try {
-        const id = req.params.id
+        const {id} = req.query
         console.log(id)
         // check for correct request format
-        if(!id) {
+        if(!id || isNaN(Number(id))) {
             res.status(400).json({
                 message: 'wrong parameter recieved!'
             })
