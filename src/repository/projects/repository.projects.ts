@@ -15,7 +15,7 @@ export const getAllProjects = async (): Promise<object> => {
 // get one project by id
 export const getOneProject = async (id: number): Promise<object> => {
     try {
-        const project = await Project.findBy({ id });
+        const project = await Project.findOne( {where: {id}} );
         return project;
     } catch (error) {
         console.log(error);
