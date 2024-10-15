@@ -61,8 +61,8 @@ export const getOneBlog = async (id: number): Promise<IBlog> => {
     }
 };
 // create a blog 
-export const addOneBlog = async (
-    title: string,
+export const addOneBlog = async (blogData:
+    {title: string,
     status: status,
     thumbnail: string,
     category: string,
@@ -70,22 +70,23 @@ export const addOneBlog = async (
     author_summary: string,
     content: object[],
     language: string,
-    authorId: number
+    authorId: number}
 ): Promise<IBlog> => {
     try {
-        const user = await getOneUser(authorId);
+        const user = await getOneUser(blogData.authorId);
 
         const newBlog = await Blog.save({
-            title,
-            status,
-            thumbnail,
+            
+            title: blogData.title,
+            status: blogData.status,
+            thumbnail: blogData.thumbnail,
             upvote: 0,
             views: 0,
-            category,
-            readtime,
-            author_summary,
-            content,
-            language,
+            category: blogData.category,
+            readtime: blogData.readtime,
+            author_summary: blogData.author_summary,
+            content: blogData.content,
+            language: blogData.language,
             user,
         });
         const resultBlog: IBlog = {

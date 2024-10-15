@@ -30,7 +30,6 @@ export const addOneUser = async (userData: {
             phone_number: userData.phoneNumber,
             role: userData.role,
         });
-        console.log(newUser);
         return newUser;
     } catch (error) {
         console.log(error);
@@ -49,7 +48,6 @@ export const addAdminUser = async (userData: {
             phone_number: userData.phoneNumber,
             role: role.admin,
         });
-        console.log(newUser);
         return newUser;
     } catch (error) {
         console.log(error);

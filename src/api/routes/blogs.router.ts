@@ -10,6 +10,6 @@ const blogsRouter = express.Router();
 blogsRouter.get("/", getBlogs);
 blogsRouter.get("/sort/", getSortedBlogs);
 blogsRouter.put(`/upvote/inc`, incUpvote)
-blogsRouter.get("/b", getBlog);
+blogsRouter.get("/blog", getBlog);
 
 export default blogsRouter;
