@@ -1,9 +1,11 @@
 import express from 'express';
+import { getBlog, getBlogs } from '../controllers/blogs.controller';
+import { createBlog } from '../controllers/panel.controller';
 const panelRouter = express.Router()
 // blogs
-// panelRouter.get('/blogs', getAllBlogs)
-// panelRouter.get('/blogs/:id', getOneBlog)
-// panelRouter.post('/blogs/:id', createOneBlog)
+panelRouter.get("/", getBlogs);
+panelRouter.get("/blog", getBlog);
+panelRouter.post('/blogs', createBlog)
 // panelRouter.put('/blogs/:id', updateOneBlog)
 // panelRouter.delete('/blogs/:id', deleteOneBlog)
 // // services
