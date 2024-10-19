@@ -24,6 +24,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: app:latest
+          tags: mahannezafat/portfolio-backend:latest
         
      
