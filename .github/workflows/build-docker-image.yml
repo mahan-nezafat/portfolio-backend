@@ -25,5 +25,7 @@ jobs:
           context: .
           push: true
           tags: mahannezafat/portfolio-backend:latest
+        env:
+         IP: ${{ secrets.SERVER_IP }}
         
      
