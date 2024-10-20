@@ -8,7 +8,8 @@ import { Service } from "./entities/Service";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: "localhost",
+    host: "postgres",
+    // "localhost",
     port: 5432,
     username: "postgres",
     password: "password",
