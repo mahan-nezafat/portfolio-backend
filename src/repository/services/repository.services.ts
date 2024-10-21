@@ -23,8 +23,9 @@ export const getOneService = async (id: number): Promise<object> => {
 };
 // add one service
 export const addOneService = async (
-    authorId: number,
+    
     servicePayLoad: {
+        authorId: number,
         name: string,
         thumbnailSrc: string,
         content: object[],
@@ -32,7 +33,7 @@ export const addOneService = async (
     }
 ): Promise<object> => {
     try {
-        const user = await getOneUser(authorId);
+        const user = await getOneUser(servicePayLoad.authorId);
         const newService = await Service.save({
             name: servicePayLoad.name,
             thumbnail_src: servicePayLoad.thumbnailSrc,

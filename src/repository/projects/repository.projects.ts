@@ -15,25 +15,24 @@ export const getAllProjects = async (): Promise<object> => {
 // get one project by id
 export const getOneProject = async (id: number): Promise<object> => {
     try {
-        const project = await Project.findOne( {where: {id}} );
+        const project = await Project.findOne({ where: { id } });
         return project;
     } catch (error) {
         console.log(error);
     }
 };
 // add one project
-export const addOneProject = async (
-    authorId: number,
-    projectPayLoad: {
-        name: string;
-        description: string;
-        thumbnailSrc: string;
-        videoSrc: string;
-        linkUrl: string;
-    }
-): Promise<object> => {
+export const addOneProject = async (projectPayLoad: {
+    authorId: number;
+
+    name: string;
+    description: string;
+    thumbnailSrc: string;
+    videoSrc: string;
+    linkUrl: string;
+}): Promise<object> => {
     try {
-        const user = await getOneUser(authorId);
+        const user = await getOneUser(projectPayLoad.authorId);
         const newProject = await Project.save({
             name: projectPayLoad.name,
             description: projectPayLoad.description,
@@ -65,9 +64,8 @@ export const updateOneProject = async (
             thumbnail_src: updatedData.thumbnailSrc,
             video_src: updatedData.videoSrc,
             link: updatedData.linkUrl,
-            
-        })
-        return updatedProject
+        });
+        return updatedProject;
     } catch (error) {
         console.log(error);
     }
@@ -76,7 +74,7 @@ export const updateOneProject = async (
 export const deleteOneProject = async (id: number): Promise<object> => {
     try {
         const deletedProject = await Project.delete(id);
-        return deletedProject
+        return deletedProject;
     } catch (error) {
         console.log(error);
     }
