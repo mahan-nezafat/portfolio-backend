@@ -67,7 +67,7 @@ export const addOneBlog = async (blogData:
     thumbnail: string,
     category: string,
     readtime: number,
-    author_summary: string,
+    authorSummary: string,
     content: object[],
     language: string,
     authorId: number}
@@ -84,7 +84,7 @@ export const addOneBlog = async (blogData:
             views: 0,
             category: blogData.category,
             readtime: blogData.readtime,
-            author_summary: blogData.author_summary,
+            author_summary: blogData.authorSummary,
             content: blogData.content,
             language: blogData.language,
             user,

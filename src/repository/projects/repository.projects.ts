@@ -24,7 +24,6 @@ export const getOneProject = async (id: number): Promise<object> => {
 // add one project
 export const addOneProject = async (projectPayLoad: {
     authorId: number;
-
     name: string;
     description: string;
     thumbnailSrc: string;

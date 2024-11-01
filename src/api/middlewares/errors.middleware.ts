@@ -1,12 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 
-// TO DO -- validation handler and middleware for requests
+// TO DO -- validation / sanitization handler and middleware for requests using YUP
 
 // TO DO -- redirect middleware / redirect if success or if failed
 
 // TO DO -- error middleware
-
-// TO DO -- requests sanitization handler
 
 // TO DO -- verify user middleware/ handler 
 

@@ -11,11 +11,11 @@ import panelRouter from "./api/routes/panel.router";
 const port = process.env.PORT;
 
 const app = express();
-const router = express.Router();
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(morgan("dev"));
 app.use(helmet());
+const router = express.Router();
 app.use("/", router);
 app.use("/blogs", blogsRouter);
 app.use("/projects", projectsRouter);

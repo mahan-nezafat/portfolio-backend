@@ -19,7 +19,8 @@
       "morgan": "^1.10.0",
       "pg": "^8.4.0",
       "reflect-metadata": "^0.1.13",
-      "typeorm": "0.3.20"
+      "typeorm": "0.3.20",
+      "yup": "^1.4.0"
    },
    "devDependencies": {
       "@babel/core": "^7.25.2",
