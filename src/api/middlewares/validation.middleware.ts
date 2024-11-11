@@ -78,3 +78,27 @@ export const validateProjectMiddleware = async (req: Request, res: Response, nex
         })
     }
 }
+
+export const validateAuth = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+       
+    const body = req.body
+    const authSchema = yup.object().shape({
+        firstName: yup.string().required("first name is needed").typeError("first name is a number").strict(),
+        lastName: yup.string().required("last name is needed").typeError("last name must be string").strict(),
+        phoneNumber: yup.string().required("phonenumber must not be empty").typeError("phonenumber must be string").strict(),
+        role: yup.string().required("role must not be empty").typeError("role must be string").strict(),
+        
+    })
+    console.log(body)
+    const validatedBody = await authSchema.validate(body)
+    next()    
+}
+
+    catch(error) {
+        console.log(error)
+        res.status(400).json({
+            message: error.message
+        })
+    }
+}
