@@ -8,3 +8,5 @@ temp/
 src/*/*.js
 src/*.js
 src/*/*/*.js
+secret.pem
+public.pem
