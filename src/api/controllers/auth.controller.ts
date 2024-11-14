@@ -1,13 +1,13 @@
-import { addAdminUser, addOneUser } from "../../repository/users/repository.users"
+import { addAdminUser, addOneUser, getOneUser } from "../../repository/users/repository.users"
 import { connectToDb, disconnectFromDb } from "../handlers/adapter"
 import { Request, Response } from "express"
-import { signToken } from "../handlers/jwt.handler"
+import { decodeToken, signToken } from "../handlers/jwt.handler"
 
-// TO DO -- validation handler and middleware for requests
-// TO DO -- redirect middleware / redirect if success or if failed
-// TO DO -- error middleware
-// TO DO -- requests sanitization handler 
-// TO DO -- verify user middleware/ handler
+// TO DO -- error middleware 
+// TO DO -- validation handler and middleware for requests -- done
+// TO DO -- redirect middleware / redirect if success or if failed -- done
+// TO DO -- requests sanitization handler -- done
+// TO DO -- verify user middleware/ handler -- done
 export const signUpAdminUser = async (req: Request, res: Response): Promise<object> => {
     try {
         
@@ -64,5 +64,22 @@ export const signUpUser = async (req: Request, res: Response): Promise<object> =
 }
 
 export const loginUser = async (req: Request, res: Response): Promise<object> => {
-    return
+    try {
+        await connectToDb()
+        const authHeader = req.headers.authorization
+        if(!authHeader) {
+            // checkotp
+        }
+        const decodedToken = decodeToken(authHeader.replace("Bearer ", ""))
+        // console.log(decodedToken.phoneNumber)
+        const user = await getOneUser(decodedToken.phoneNumber)
+
+        await disconnectFromDb()
+        return res.status(200).json( {
+            message: 'user founded',
+            data: user
+        })
+    } catch (error) {
+        console.log(error)
+    }
 }

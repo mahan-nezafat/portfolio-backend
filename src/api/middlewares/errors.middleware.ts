@@ -41,5 +41,5 @@ export const signUpErrorMiddleware = (req: Request, res: Response, next: NextFun
 }
 
 export const loginErrorMiddleware = (req: Request, res: Response, next: NextFunction) => {
-
+    next()
 }
