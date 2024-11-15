@@ -7,13 +7,14 @@ import projectsRouter from "./api/routes/projects.router";
 import servicesRouter from "./api/routes/services.router";
 import authRouter from "./api/routes/auth.router";
 import panelRouter from "./api/routes/panel.router";
+import { accessLogStream } from "./api/handlers/logs.handler";
 
 const port = process.env.PORT;
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(morgan("dev"));
+app.use(morgan("combined", {stream: accessLogStream}));
 app.use(helmet());
 const router = express.Router();
 app.use("/", router);

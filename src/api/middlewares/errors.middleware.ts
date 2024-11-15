@@ -2,19 +2,17 @@ import { NextFunction, Request, Response } from "express";
 
 // TO DO -- validation / sanitization handler and middleware for requests using YUP ----- DONE
 
-// TO DO -- redirect middleware / redirect if success or if failed
+// TO DO -- redirect middleware / redirect if success or if failed -- 
 
 // TO DO -- error middleware
 
-// TO DO -- verify user middleware/ handler 
+// TO DO -- verify user middleware/ handler -- done
 
 // TO DO check otp sent
 
-// TO DO create and sign then send jwt token
+// TO DO create and sign then send jwt token -- done
 
 // TO DO
-// -- CREATE HANDLER FOR SORT REQUEST
-// -- CREATE MIDDLEWARE FOR ERROR MANAGEMENT
 // -- ADD s3 bucket for images and videos
 // -- CREATE logging file per day by morgan
 // -- GET ssl cert route request on https for backend
