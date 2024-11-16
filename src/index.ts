@@ -24,4 +24,8 @@ app.use("/services", servicesRouter);
 app.use("/panel", panelRouter);
 app.use("/auth", authRouter);
 
+app.get('/', (req, res) => {
+    res.send('<h1>34289892</h1>')
+})
+
 app.listen(3000, () => console.log(`server running on port 3000`));
