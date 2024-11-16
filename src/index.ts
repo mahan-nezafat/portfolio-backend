@@ -8,6 +8,7 @@ import servicesRouter from "./api/routes/services.router";
 import authRouter from "./api/routes/auth.router";
 import panelRouter from "./api/routes/panel.router";
 import { accessLogStream } from "./api/handlers/logs.handler";
+import path from "path";
 
 const port = process.env.PORT;
 
@@ -24,8 +25,8 @@ app.use("/services", servicesRouter);
 app.use("/panel", panelRouter);
 app.use("/auth", authRouter);
 
-app.get('/', (req, res) => {
-    res.send('<h1>34289892</h1>')
+app.get('/34289892.txt', (req, res) => {
+    res.sendFile("34289892.txt", {root: path.join(__dirname)})
 })
 
 app.listen(3000, () => console.log(`server running on port 3000`));
