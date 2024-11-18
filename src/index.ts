@@ -1,5 +1,6 @@
 import express from "express";
 import "dotenv/config";
+import https from "https"
 import morgan from "morgan";
 import helmet from "helmet";
 import blogsRouter from "./api/routes/blogs.router";
@@ -9,7 +10,7 @@ import authRouter from "./api/routes/auth.router";
 import panelRouter from "./api/routes/panel.router";
 import { accessLogStream } from "./api/handlers/logs.handler";
 import path from "path";
-
+import fs from 'fs'
 const port = process.env.PORT;
 
 const app = express();
@@ -25,8 +26,16 @@ app.use("/services", servicesRouter);
 app.use("/panel", panelRouter);
 app.use("/auth", authRouter);
 
-app.get('/34289892.txt', (req, res) => {
-    res.sendFile("34289892.txt", {root: path.join(__dirname)})
+app.get("/", (req, res) => {
+    res.send("hello from https to you")
 })
 
-app.listen(3000, () => console.log(`server running on port 3000`));
+const cert = {
+    public: fs.readFileSync("fullchain.pem","utf-8"),
+    private: fs.readFileSync("privkey.pem", "utf-8")
+}
+
+console.log(cert)
+
+https.createServer(cert, app).listen(3000, () => console.log(`server running on port 2083`))
+// app.listen(3000, () => console.log(`server running on port 3000`));
