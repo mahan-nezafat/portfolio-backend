@@ -31,9 +31,9 @@ app.get("/", (req, res) => {
 })
 
 
-
+console.log(port)
 https.createServer({
-    cert: fs.readFileSync("fullchain.pem","utf-8"),
-    key: fs.readFileSync("privkey.pem", "utf-8")
-}, app).listen(3000, () => console.log(`server running on port 3000`))
+    cert: fs.readFileSync("cert.fullchain.pem","utf-8"),
+    key: fs.readFileSync("cert.privkey.pem", "utf-8")
+}, app).listen(3000, () => console.log(`server running on port 3000`, port))
 // app.listen(3000, () => console.log(`server running on port 3000`));
