@@ -91,10 +91,26 @@ export const updateProject = async (
     res: Response
 ): Promise<object> => {
     try {
+        let thumbnail
+        let thumbnailUrl
+        let video
+        let videoUrl
+        console.log(req.file.mimetype)
+        if(req.file.mimetype.includes('image')) {
+            thumbnail = req.file  ? req.file.originalname : ''
+            thumbnailUrl = thumbnail ? `https://portfolio-storage.storage.iran.liara.space/${thumbnail}` : ""
+
+        }
+        if(req.file.mimetype.includes('video')) {
+           video = req.file.originalname
+
+           videoUrl = video ? `https://portfolio-storage.storage.iran.liara.space/${video}` : ""
+        }
+
         const { id } = req.params;
         const body = req.body;
         await connectToDb();
-        const updatedProject = await updateOneProject(Number(id), body);
+        const updatedProject = await updateOneProject(Number(id), body, thumbnailUrl, videoUrl);
         console.log(updatedProject);
         await disconnectFromDb();
         return res.status(200).json({

@@ -1,4 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, BaseEntity, JoinColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    ManyToOne,
+    OneToMany,
+    BaseEntity,
+    JoinColumn,
+    CreateDateColumn,
+    UpdateDateColumn,
+} from "typeorm";
 import { User } from "./User";
 import { Comment } from "./Comment";
 import { status } from "../repository/blogs/interface.blogs";
@@ -9,13 +19,16 @@ export class Blog extends BaseEntity {
     id: number;
     @Column("varchar")
     title: string;
-    
+
     @Column("varchar")
     status: status;
-   
-    @Column("varchar")
+
+    @Column({
+        type: "varchar",
+        nullable: true,
+    })
     thumbnail: string;
-   
+
     @Column("int4")
     upvote: number;
     @Column("int4")
@@ -28,22 +41,22 @@ export class Blog extends BaseEntity {
     author_summary: string;
 
     @Column({
-        type: 'jsonb',
-        nullable: true
+        type: "jsonb",
+        nullable: true,
     })
-    content: object[]
-   
+    content: object[];
+
     @Column("varchar")
     language: string;
     @CreateDateColumn()
-    created_at: Date
+    created_at: Date;
     @UpdateDateColumn()
-    updated_at: Date
+    updated_at: Date;
     @ManyToOne(() => User, (user) => user.blogs)
     @JoinColumn({
-        name: 'author_id'
+        name: "author_id",
     })
-    user: User
+    user: User;
 
     @OneToMany(() => Comment, (comment) => comment.blog)
     comments: Comment[];

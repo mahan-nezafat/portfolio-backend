@@ -16,7 +16,7 @@ export class Service extends BaseEntity {
     id: number;
     @Column("varchar")
     name: string
-    @Column("varchar")
+    @Column({type: "varchar", nullable: true})
     thumbnail_src: string
     @Column({
         type: "jsonb",

@@ -9,6 +9,7 @@ const authRouter = express.Router()
   // TO DO check otp sent
         // TO DO create and sign then send jwt token 
 authRouter.post('/signup/admin', validateAuth, signUpErrorMiddleware, checkOtp ,signUpAdminUser)
+
 authRouter.post('/signup/', validateAuth, signUpErrorMiddleware, checkOtp ,signUpUser)
 
 

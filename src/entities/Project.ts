@@ -11,9 +11,9 @@ export class Project extends BaseEntity {
     description: string; 
     @Column("varchar")
     link: string;
-    @Column("varchar")
+    @Column({type:"varchar", nullable: true})
     thumbnail_src: string;
-    @Column("varchar")
+    @Column({type:"varchar", nullable: true})
     video_src: string;
     @CreateDateColumn()
     created_at: Date

@@ -90,10 +90,18 @@ export const updateService = async (
     res: Response
 ): Promise<object> => {
     try {
+        let thumbnail
+        let thumbnailUrl
+        console.log(req.file.mimetype)
+        if(req.file.mimetype.includes('image')) {
+            thumbnail = req.file  ? req.file.originalname : ''
+            thumbnailUrl = thumbnail ? `https://portfolio-storage.storage.iran.liara.space/${thumbnail}` : ""
+
+        }
         const { id } = req.params;
         const body = req.body;
         await connectToDb();
-        const updatedService = await updateOneService(Number(id), body);
+        const updatedService = await updateOneService(Number(id), body, thumbnailUrl);
         console.log(updatedService);
         await disconnectFromDb();
         return res.status(200).json({

@@ -1,22 +1,24 @@
 import { NextFunction, Request, Response } from "express";
 
 // TO DO -- validation / sanitization handler and middleware for requests using YUP ----- DONE
-
-// TO DO -- redirect middleware / redirect if success or if failed -- 
-
-// TO DO -- error middleware
-
+// -- ADD s3 bucket for images and videos -- done
+// -- CREATE logging file per day by morgan -- done
+// -- GET ssl cert route request on https for backend -- done
 // TO DO -- verify user middleware/ handler -- done
-
-// TO DO check otp sent
-
 // TO DO create and sign then send jwt token -- done
 
 // TO DO
-// -- ADD s3 bucket for images and videos
-// -- CREATE logging file per day by morgan
-// -- GET ssl cert route request on https for backend
-// -- SET swagger for api docs
+// -- check useraccess middleware
+// -- redirect middleware / redirect if success or if failed
+// -- error middleware
+// -- check otp send otp
+// -- setup docker compose :
+    // -- setup postgresql container securely
+    // -- setup nginx container
+    //-------------------------//
+    // -- setup nextjs container -- not now
+    // -- setup redis -- later -- not now
+    // -- SET swagger for api docs -- not now
 
 export const blogsErrorMiddleware = (req: Request, res: Response, next: NextFunction) => {
     const {orderby} = req.query

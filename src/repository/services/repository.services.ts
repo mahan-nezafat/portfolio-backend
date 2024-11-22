@@ -27,7 +27,7 @@ export const addOneService = async (
     servicePayLoad: {
         authorId: number,
         name: string,
-        thumbnailSrc: string,
+       
         content: object[],
         price: number,
     }
@@ -36,7 +36,7 @@ export const addOneService = async (
         const user = await getOneUser(servicePayLoad.authorId);
         const newService = await Service.save({
             name: servicePayLoad.name,
-            thumbnail_src: servicePayLoad.thumbnailSrc,
+          
             content: servicePayLoad.content,
             price: servicePayLoad.price,
             user,
@@ -51,15 +51,16 @@ export const updateOneService = async (
     id: number,
     updatedData: {
         name?: string,
-        thumbnailSrc?: string,
+        
         content?: object[],
         price?: number,
-    }
+    },
+    thumbnailFile?: string
 ): Promise<object> => {
     try {
         const updatedService = await Service.update(id, {
             name: updatedData.name,
-            thumbnail_src: updatedData.thumbnailSrc,
+            thumbnail_src: thumbnailFile,
             content: updatedData.content,
             price: updatedData.price,
         });

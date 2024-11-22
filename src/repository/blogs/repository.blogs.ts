@@ -64,7 +64,6 @@ export const getOneBlog = async (id: number): Promise<IBlog> => {
 export const addOneBlog = async (blogData:
     {title: string,
     status: status,
-    thumbnail: string,
     category: string,
     readtime: number,
     authorSummary: string,
@@ -79,7 +78,6 @@ export const addOneBlog = async (blogData:
             
             title: blogData.title,
             status: blogData.status,
-            thumbnail: blogData.thumbnail,
             upvote: 0,
             views: 0,
             category: blogData.category,
@@ -118,20 +116,21 @@ export const updateOneBlog = async (
     thumbnail?: string,
     category?: string,
     readtime?: number,
-    author_summary?: string,
+    authorSummary?: string,
     content?: object[],
     language?: string
-    }
+    },
+    thumbnailFile: string
 ): Promise<object> => {
     
     try {
         const updatedBlog = await Blog.update(id, {
             status: updatedData.status,
             title: updatedData.title,
-            thumbnail: updatedData.thumbnail,
+            thumbnail: thumbnailFile,
             category: updatedData.category,
             readtime: updatedData.readtime,
-            author_summary: updatedData.author_summary,
+            author_summary: updatedData.authorSummary,
             content: updatedData.content,
             language: updatedData.language,
         });

@@ -7,6 +7,7 @@ export const checkOtp = (
     next: NextFunction
 ) => {
     try {
+        next()
       // checkotp if valid next the jwt verify middleware
       // if not redirect 
       // if not but have auth header next 

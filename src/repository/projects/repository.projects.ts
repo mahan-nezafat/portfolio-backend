@@ -26,8 +26,6 @@ export const addOneProject = async (projectPayLoad: {
     authorId: number;
     name: string;
     description: string;
-    thumbnailSrc: string;
-    videoSrc: string;
     linkUrl: string;
 }): Promise<object> => {
     try {
@@ -35,8 +33,6 @@ export const addOneProject = async (projectPayLoad: {
         const newProject = await Project.save({
             name: projectPayLoad.name,
             description: projectPayLoad.description,
-            thumbnail_src: projectPayLoad.thumbnailSrc,
-            video_src: projectPayLoad.videoSrc,
             link: projectPayLoad.linkUrl,
             user,
         });
@@ -51,17 +47,17 @@ export const updateOneProject = async (
     updatedData: {
         name?: string;
         description?: string;
-        thumbnailSrc?: string;
-        videoSrc?: string;
         linkUrl?: string;
-    }
+    },
+    thumbnailFile?: string,
+    videoFile?: string
 ): Promise<object> => {
     try {
         const updatedProject = await Project.update(id, {
             name: updatedData.name,
             description: updatedData.description,
-            thumbnail_src: updatedData.thumbnailSrc,
-            video_src: updatedData.videoSrc,
+            thumbnail_src: thumbnailFile,
+            video_src: videoFile,
             link: updatedData.linkUrl,
         });
         return updatedProject;

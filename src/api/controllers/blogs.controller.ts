@@ -2,7 +2,8 @@ import { Request, Response } from "express"
 import { IBlog } from "../../repository/blogs/interface.blogs"
 import { connectToDb, disconnectFromDb } from "../handlers/adapter"
 import { addOneBlog, deleteOneBlog, getAllBlogs, getOldestBlogs, getOneBlog, getRecentBlogs, incrementUpvotes, incrementViews, updateOneBlog } from "../../repository/blogs/repository.blogs"
-
+import multer from 'multer'
+import { getFileUrl } from "../../../s3/storage.handler"
 // TO DO
     // -- CREATE HANDLER FOR SORT REQUEST
     // -- CREATE MIDDLEWARE FOR ERROR MANAGEMENT
@@ -137,6 +138,7 @@ export const createBlog = async (
     res: Response
 ): Promise<object> => {
     try {
+        
         const body = req.body;
         await connectToDb();
 
@@ -154,10 +156,14 @@ export const createBlog = async (
 
 export const updateBlog = async (req: Request, res: Response): Promise<object> => {
     try {
+        let thumbnail = req.file ? req.file.originalname : ''
+        const thumbnailUrl = `https://portfolio-storage.storage.iran.liara.space/${thumbnail}`
         const {id} = req.params
         const body = req.body
         await connectToDb()
-        const updatedBlog = await updateOneBlog(Number(id), body)
+        const updatedBlog = await updateOneBlog(Number(id), body, thumbnailUrl)
+
+        
         console.log(updatedBlog)
         await disconnectFromDb()
         return res.status(200).json({
