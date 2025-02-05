@@ -1,0 +1,41 @@
+services:
+  backend:
+    image: "mahannezafat/portfolio-backend:latest" 
+    ports:
+      - "3000:3000"
+    depends_on:
+      database:
+        condition: service_started
+        restart: true
+    secrets: 
+      - private_key
+      - public_key
+  frontend:
+    build:
+    ports:
+      - "5000:80"
+  database:
+    image: "postgres:latest"
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgres
+    environment:
+      - POSTGRES_PASSWORD: db_password
+    secrets:
+      - db_password
+      - db_username
+    
+
+secrets:
+  db_username:
+    file: db-username.txt
+  db_password:
+    file: db-password.txt
+
+volumes:
+  db_data:  
+  private_key: 
+    file: secret.pem
+  public_key: 
+    file: public.pem
