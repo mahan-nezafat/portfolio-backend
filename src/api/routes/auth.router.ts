@@ -8,11 +8,35 @@ const authRouter = express.Router()
 
   // TO DO check otp sent
         // TO DO create and sign then send jwt token 
+
+/**
+ * @swagger
+/signup/admin:
+ *   post:
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: firstname
+ *         in: formData
+ *         required: true
+ *         type: string
+ *       - name: lastname
+ *         in: formData
+ *         required: true
+ *         type: string 
+ *       - name: phoneumber
+ *         in: formData
+ *         required: true
+ *         type: string 
+ */
 authRouter.post('/signup/admin', validateAuth, signUpErrorMiddleware, checkOtp ,signUpAdminUser)
 
 authRouter.post('/signup/', validateAuth, signUpErrorMiddleware, checkOtp ,signUpUser)
 
 
 authRouter.post("/login", validateAuth, loginErrorMiddleware, checkOtp, verifyJwtMiddleware, loginUser)
+
+// authRouter.post("/send-otp", sendOtp)
+// authRouter.post("/check-otp")
 
 export default authRouter

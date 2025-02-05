@@ -6,9 +6,9 @@ import { NextFunction, Request, Response } from "express";
 // -- GET ssl cert route request on https for backend -- done
 // TO DO -- verify user middleware/ handler -- done
 // TO DO create and sign then send jwt token -- done
+// -- check useraccess middleware -- done
 
 // TO DO
-// -- check useraccess middleware
 // -- redirect middleware / redirect if success or if failed
 // -- error middleware
 // -- check otp send otp

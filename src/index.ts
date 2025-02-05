@@ -9,8 +9,10 @@ import servicesRouter from "./api/routes/services.router";
 import authRouter from "./api/routes/auth.router";
 import panelRouter from "./api/routes/panel.router";
 import { accessLogStream } from "./api/handlers/logs.handler";
-import path from "path";
-import fs from 'fs'
+import swaggerJsDoc from 'swagger-jsdoc'
+import swaggerUi from 'swagger-ui'
+import {options}   from './api/swagger/options'
+import  SwaggerUI from "swagger-ui-express";
 const port = process.env.PORT;
 
 const app = express();
@@ -29,8 +31,9 @@ app.use("/auth", authRouter);
 app.get("/", (req, res) => {
     res.send("hello from https to you")
 })
+const specs = swaggerJsDoc(options)
 
-
+app.use('/api-docs', SwaggerUI.serve, SwaggerUI.setup(specs))
 // console.log(port)
 // https.createServer({
 //     cert: fs.readFileSync("cert.fullchain.pem","utf-8"),
