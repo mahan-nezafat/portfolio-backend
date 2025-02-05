@@ -7,15 +7,15 @@ import { NextFunction, Request, Response } from "express";
 // TO DO -- verify user middleware/ handler -- done
 // TO DO create and sign then send jwt token -- done
 // -- check useraccess middleware -- done
+// -- setup docker compose -- done
 
 // TO DO
-// -- redirect middleware / redirect if success or if failed
-// -- error middleware
-// -- check otp send otp
-// -- setup docker compose :
-    // -- setup postgresql container securely
-    // -- setup nginx container
-    //-------------------------//
+// -- setup postgresql container securely
+// -- setup nginx container
+//-------------------------//
+// -- error middleware -- not now
+// -- redirect middleware / redirect if success or if failed -- not now
+// -- check otp send otp -- not now
     // -- setup nextjs container -- not now
     // -- setup redis -- later -- not now
     // -- SET swagger for api docs -- not now
