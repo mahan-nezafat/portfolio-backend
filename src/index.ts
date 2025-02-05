@@ -1,29 +1,43 @@
-import express = require('express');
-import 'dotenv/config'
-import morgan = require('morgan')
-import helmet from 'helmet'
+import express from "express";
+import "dotenv/config";
+import https from "https"
+import morgan from "morgan";
+import helmet from "helmet";
+import blogsRouter from "./api/routes/blogs.router";
+import projectsRouter from "./api/routes/projects.router";
+import servicesRouter from "./api/routes/services.router";
+import authRouter from "./api/routes/auth.router";
+import panelRouter from "./api/routes/panel.router";
+import { accessLogStream } from "./api/handlers/logs.handler";
+import swaggerJsDoc from 'swagger-jsdoc'
+import swaggerUi from 'swagger-ui'
+import {options}   from './api/swagger/options'
+import  SwaggerUI from "swagger-ui-express";
+const port = process.env.PORT;
+
 const app = express();
-import { AppDataSource } from "./data-source"
-import { User } from "./entity/User"
-
-
-const port = process.env.PORT
-
-
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(morgan('dev'))
-app.use(helmet())
+app.use(express.json());
+app.use(morgan("combined", {stream: accessLogStream}));
+app.use(helmet());
+const router = express.Router();
+app.use("/", router);
+app.use("/blogs", blogsRouter);
+app.use("/projects", projectsRouter);
+app.use("/services", servicesRouter);
+app.use("/panel", panelRouter);
+app.use("/auth", authRouter);
 
-app.get('/', (req, res) => {
-    return res.status(200).json({
-        success: true,
-        message: 'response ok'
-    })
+app.get("/", (req, res) => {
+    res.send("hello from https to you")
 })
+const specs = swaggerJsDoc(options)
 
-AppDataSource.initialize().then(() => console.log('db connected')).catch(error => console.log(error))
-
-
-
-app.listen(port, () => console.log(`server running on port ${port}`))
+app.use('/api-docs', SwaggerUI.serve, SwaggerUI.setup(specs))
+// console.log(port)
+// https.createServer({
+//     cert: fs.readFileSync("cert.fullchain.pem","utf-8"),
+//     key: fs.readFileSync("cert.privkey.pem", "utf-8")
+// }, 
+app.listen(3000, () => console.log(`server running on port 3000`))
+// app.listen(3000, () => console.log(`server running on port 3000`));

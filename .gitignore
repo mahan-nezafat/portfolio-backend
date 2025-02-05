@@ -5,3 +5,9 @@ build/
 tmp/
 temp/
 .env
+src/*/*.js
+src/*.js
+src/*/*/*.js
+*.pem
+logs
+uploads
