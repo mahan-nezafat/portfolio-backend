@@ -7,7 +7,7 @@ import { readFileSync } from "node:fs";
 const secretKey = readFileSync("secret.pem", "utf-8");
 const publicKey = readFileSync("public.pem", "utf-8");
 
-
+//add a refresh token method too
 
 const payload = {
     phoneNumber: "09053217299",

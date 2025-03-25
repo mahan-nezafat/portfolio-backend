@@ -3,6 +3,7 @@ import { connectToDb, disconnectFromDb } from "../handlers/adapter"
 import { Request, Response } from "express"
 import { decodeToken, signToken } from "../handlers/jwt.handler"
 import * as dotenv from 'dotenv'
+import { checkOtp, sendOtp } from "../handlers/otp.handler"
 // TO DO -- error middleware 
 // TO DO -- validation handler and middleware for requests -- done
 // TO DO -- redirect middleware / redirect if success or if failed -- done
@@ -86,25 +87,30 @@ export const loginUser = async (req: Request, res: Response): Promise<object> =>
     }
 }
 
-// export const sendOtp = async () => {
-//     const data = {
-//         phoneNumber: "09053217299",
-//         templateId: "294456",
-//         "parameters": [
-//             {name: "code" , value: "123456"}
-//           ],
-//     }
-//     const res = fetch('https://api.sms.ir/v1/send/verify', {
-//         method: 'post',
-//         url: 'https://api.sms.ir/v1/send/verify',
-//         headers: {
-//           'Content-Type': 'application/json',
-//           'Accept': 'text/plain',
-//           'x-api-key': 'YOURAPIKEY'
-//         },
-//         data
-//     })
-//     console.log(res)
-// }
+export const sendOtpController = async (req: Request, res: Response) => {
+    const {phoneNumber} = req.body
+    const data = await sendOtp(phoneNumber)
+    if(data) {
+        return res.status(200).json({
+            message: "sent",
+            data: phoneNumber
+        })
+    }else return res.status(400).json({
+        message: "failed, bad request",
+        data: phoneNumber
+    })
+}
 
-// sendOtp()
+export const checkOtpController = async (req: Request, res: Response) => {
+    const {phoneNumber, otp} = req.body
+    const data = await checkOtp(phoneNumber, otp)
+    if(data) {
+        return res.status(200).json({
+            message: "otp correct, user authorized",
+            data: phoneNumber
+        })
+    }else return res.status(400).json({
+        message: "failed, bad request",
+        data: phoneNumber
+    })
+}
