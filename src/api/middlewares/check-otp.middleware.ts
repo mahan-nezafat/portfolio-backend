@@ -1,17 +1,25 @@
 import { NextFunction, Request, Response } from "express";
+import { checkOtp } from "../handlers/otp.handler";
 
-
-export const checkOtp = (
+export const checkOtpMiddleware = async (
     req: Request,
     res: Response,
     next: NextFunction
 ) => {
-    try {
-        next()
-      // checkotp if valid next the jwt verify middleware
-      // if not redirect 
-      // if not but have auth header next 
-    } catch (error) {
-        console.log(error)
+    const { phoneNumber, otp } = req.body;
+    const authHeader = req.headers.authorization;
+    const data = await checkOtp(phoneNumber, otp);
+    if (data) {
+        return next();
+    } else if (authHeader.includes("Bearer")) {
+        return next();
+    } else {
+        return res.status(400).json({
+            message: "bad request",
+            data: {
+                user: phoneNumber,
+                response: "failed, user not authorized",
+            },
+        });
     }
 };
