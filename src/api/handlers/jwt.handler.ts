@@ -32,7 +32,7 @@ export const verifyToken = (token) => {
 }
 
 export const decodeToken = (token) => {
-    const decoded = jwt.decode(token)
+    const decoded = jwt.decode(token, {json: true})
     return decoded
 }
 

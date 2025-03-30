@@ -1,13 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
-// TO DO -- validation / sanitization handler and middleware for requests using YUP ----- DONE
-// -- ADD s3 bucket for images and videos -- done
-// -- CREATE logging file per day by morgan -- done
-// -- GET ssl cert route request on https for backend -- done
-// TO DO -- verify user middleware/ handler -- done
-// TO DO create and sign then send jwt token -- done
-// -- check useraccess middleware -- done
-// -- setup docker compose -- done
+
 
 // TO DO
 // -- setup postgresql container securely
@@ -15,8 +8,6 @@ import { NextFunction, Request, Response } from "express";
 //-------------------------//
 // -- error middleware -- not now
 // -- redirect middleware / redirect if success or if failed -- not now
-// -- check otp send otp -- not now
-    // -- setup nextjs container -- not now
     // -- setup redis -- later -- not now
     // -- SET swagger for api docs -- not now
 

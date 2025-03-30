@@ -21,3 +21,9 @@ export const isCached = (key: string):boolean => {
     const data = cache.has(key)
     return data
 }
+
+export const deleteOtp = (key: string) => {
+    const data = cache.del(key)
+    
+    return data
+}
