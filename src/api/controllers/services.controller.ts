@@ -6,8 +6,11 @@ import {
     getOneService,
     updateOneService,
 } from "../../repository/services/repository.services";
+import { addOneUser, getOneUser, updateOneUser } from "../../repository/users/repository.users";
 import { connectToDb, disconnectFromDb } from "../handlers/adapter";
 import { Request, Response } from "express";
+import { signToken } from "../handlers/jwt.handler";
+import { sendSms } from "../handlers/sms.handler";
 
 export const getServices = async (
     req: Request,
@@ -90,18 +93,23 @@ export const updateService = async (
     res: Response
 ): Promise<object> => {
     try {
-        let thumbnail
-        let thumbnailUrl
-        console.log(req.file.mimetype)
-        if(req.file.mimetype.includes('image')) {
-            thumbnail = req.file  ? req.file.originalname : ''
-            thumbnailUrl = thumbnail ? `https://portfolio-storage.storage.iran.liara.space/${thumbnail}` : ""
-
+        let thumbnail;
+        let thumbnailUrl;
+        console.log(req.file.mimetype);
+        if (req.file.mimetype.includes("image")) {
+            thumbnail = req.file ? req.file.originalname : "";
+            thumbnailUrl = thumbnail
+                ? `https://portfolio-storage.storage.iran.liara.space/${thumbnail}`
+                : "";
         }
         const { id } = req.params;
         const body = req.body;
         await connectToDb();
-        const updatedService = await updateOneService(Number(id), body, thumbnailUrl);
+        const updatedService = await updateOneService(
+            Number(id),
+            body,
+            thumbnailUrl
+        );
         console.log(updatedService);
         await disconnectFromDb();
         return res.status(200).json({
@@ -130,4 +138,38 @@ export const deleteService = async (
     } catch (error) {
         console.log(error);
     }
+};
+
+export const requestConsultation = async (
+    req: Request,
+    res: Response
+) => {
+    // check if user was registered if not sign it up
+    // add the consult service to user requested services
+    // sms user about their service being registered
+    const {phoneNumber, firstName, lastName, otp, role} = req.body;
+    await connectToDb();
+    let user;
+    user = await getOneUser(phoneNumber);
+    if (!user) {
+
+        user = await addOneUser({firstName, lastName, phoneNumber, role});
+        
+        // console.log(newUser)
+        
+    }
+    await updateOneUser(user.id, {request: "consultation"})
+    const payload = {
+        firstName, lastName, phoneNumber, role
+    };
+    await disconnectFromDb();
+    const token = signToken(payload);
+        
+    const smsRes = sendSms(phoneNumber, firstName, lastName)
+    return res.status(200).json({
+            messages: ["token created", "user made a request"] ,
+            data: {
+                jwt: token,
+            },
+        });
 };

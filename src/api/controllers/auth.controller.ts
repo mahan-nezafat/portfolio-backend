@@ -1,6 +1,6 @@
 import { addAdminUser, addOneUser, getOneUser } from "../../repository/users/repository.users"
 import { connectToDb, disconnectFromDb } from "../handlers/adapter"
-import { Request, Response } from "express"
+import { NextFunction, Request, Response } from "express"
 import { decodeToken, signToken } from "../handlers/jwt.handler"
 import * as dotenv from 'dotenv'
 import { checkOtp, sendOtp } from "../handlers/otp.handler"
@@ -36,6 +36,12 @@ export const signUpAdminUser = async (req: Request, res: Response): Promise<obje
         })
     } catch (error) {
         console.log(error)
+        return res.status(400).json({
+            message: 'an error occured',
+            data: {
+                error
+            }
+        })
     }
 }
 
@@ -87,30 +93,39 @@ export const loginUser = async (req: Request, res: Response): Promise<object> =>
     }
 }
 
-export const sendOtpController = async (req: Request, res: Response) => {
-    const {phoneNumber} = req.body
-    const data = await sendOtp(phoneNumber)
-    if(data) {
-        return res.status(200).json({
-            message: "sent",
-            data: phoneNumber
-        })
-    }else return res.status(400).json({
-        message: "failed, bad request",
-        data: phoneNumber
-    })
-}
+// export const sendOtpController = async (req: Request, res: Response) => {
+//     const {phoneNumber} = req.body
+//     console.log(req.body)
+//     const data = await sendOtp(phoneNumber)
+//     if(data) {
+//         return res.status(200).json({
+//             message: "sent",
+//             data: phoneNumber
+//         })
+//     }else return res.status(400).json({
+//         message: "failed, bad request",
+//         data: phoneNumber
+//     })
+// }
 
-export const checkOtpController = async (req: Request, res: Response) => {
-    const {phoneNumber, otp} = req.body
-    const data = await checkOtp(phoneNumber, otp)
-    if(data) {
-        return res.status(200).json({
-            message: "otp correct, user authorized",
-            data: phoneNumber
-        })
-    }else return res.status(400).json({
-        message: "failed, bad request",
-        data: phoneNumber
-    })
-}
+// export const checkOtpController = async (req: Request, res: Response, next: NextFunction) => {
+//     const {phoneNumber, otp} = req.body
+//     const data = await checkOtp(phoneNumber, otp)
+//     if(data) {
+//         res.status(200).json({
+//             message: "ok",
+//             data:{
+//                 user: phoneNumber,
+//                 response: "otp correct, user authorized",
+                
+//             }
+//         })
+//         return next()
+//     }else return res.status(400).json({
+//         message: "bad request",
+//         data:{
+//             user: phoneNumber,
+//             response: "failed, user not authorized",
+//         }
+//     })
+// }
