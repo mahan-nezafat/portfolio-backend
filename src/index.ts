@@ -15,6 +15,7 @@ import {options}   from './api/swagger/options'
 import  SwaggerUI from "swagger-ui-express";
 import { sendOtp } from "./api/handlers/otp.handler";
 import { generateOtp } from "./utils/generate-otp";
+import cors from 'cors'
 const port = process.env.PORT;
 
 const app = express();
@@ -22,6 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan("combined", {stream: accessLogStream}));
 app.use(helmet());
+app.use(cors())
 const router = express.Router();
 app.use("/", router);
 app.use("/blogs", blogsRouter);
@@ -44,5 +46,5 @@ app.use('/api-docs', SwaggerUI.serve, SwaggerUI.setup(specs))
 //     cert: fs.readFileSync("cert.fullchain.pem","utf-8"),
 //     key: fs.readFileSync("cert.privkey.pem", "utf-8")
 // }, 
-app.listen(3000, () => console.log(`server running on port 3000`))
+app.listen(3001, () => console.log(`server running on port 3001`))
 // app.listen(3000, () => console.log(`server running on port 3000`));
