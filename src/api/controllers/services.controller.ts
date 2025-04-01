@@ -168,8 +168,7 @@ export const requestConsultation = async (
     const smsRes = sendSms(phoneNumber, firstName, lastName)
     return res.status(200).json({
             messages: ["token created", "user made a request"] ,
-            data: {
-                jwt: token,
-            },
+            jwt: token,
+            
         });
 };

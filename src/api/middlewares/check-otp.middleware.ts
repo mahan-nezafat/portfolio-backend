@@ -11,7 +11,7 @@ export const checkOtpMiddleware = async (
     const data = await checkOtp(phoneNumber, otp);
     if (data) {
         return next();
-    } else if (authHeader.includes("Bearer")) {
+    } else if (authHeader && authHeader.includes("Bearer")) {
         return next();
     } else {
         return res.status(400).json({
