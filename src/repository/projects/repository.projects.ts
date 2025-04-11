@@ -29,7 +29,7 @@ export const addOneProject = async (projectPayLoad: {
     linkUrl: string;
 }): Promise<object> => {
     try {
-        const user = await getOneUser(projectPayLoad.authorId);
+        const user = await getOneUser({id: projectPayLoad.authorId});
         const newProject = await Project.save({
             name: projectPayLoad.name,
             description: projectPayLoad.description,

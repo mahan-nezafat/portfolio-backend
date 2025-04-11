@@ -3,12 +3,12 @@ import { role } from "./interface.users";
 
 // find one user
 
-export const getOneUser = async (phoneNumber: string, id?: number) => {
+export const getOneUser = async (userData: {phoneNumber?: string, id?: number}) => {
     try {
         const user = await User.findOne({
             where: {
-                id,
-                phone_number: phoneNumber
+                id: userData.id,
+                phone_number: userData.phoneNumber
             },
         });
         return user;

@@ -33,7 +33,7 @@ export const addOneService = async (
     }
 ): Promise<object> => {
     try {
-        const user = await getOneUser(servicePayLoad.authorId);
+        const user = await getOneUser({id: servicePayLoad.authorId});
         const newService = await Service.save({
             name: servicePayLoad.name,
           

@@ -9,10 +9,7 @@ const publicKey = readFileSync("public.pem", "utf-8");
 
 //add a refresh token method too
 
-const payload = {
-    phoneNumber: "09053217299",
-    name: "mahan",
-};
+
 
 const signOption = {
 

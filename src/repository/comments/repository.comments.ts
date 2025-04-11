@@ -11,7 +11,7 @@ export const addOneComment = async (commentPayLoad: {
     commentContent: string;
 }): Promise<IComment> => {
     try {
-        const user = await getOneUser(commentPayLoad.authorId);
+        const user = await getOneUser({id:commentPayLoad.authorId});
         const blog = await getOneBlog(commentPayLoad.blogId);
         const { id, content, created_at } = await Comment.save({
             content: commentPayLoad.commentContent,

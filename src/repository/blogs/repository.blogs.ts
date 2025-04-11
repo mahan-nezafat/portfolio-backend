@@ -72,7 +72,7 @@ export const addOneBlog = async (blogData:
     authorId: number}
 ): Promise<IBlog> => {
     try {
-        const user = await getOneUser(blogData.authorId);
+        const user = await getOneUser({id: blogData.authorId});
 
         const newBlog = await Blog.save({
             
