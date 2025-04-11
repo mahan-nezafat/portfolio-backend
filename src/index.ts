@@ -13,9 +13,9 @@ import swaggerJsDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui'
 import {options}   from './api/swagger/options'
 import  SwaggerUI from "swagger-ui-express";
-import { sendOtp } from "./api/handlers/otp.handler";
-import { generateOtp } from "./utils/generate-otp";
+
 import cors from 'cors'
+import { readFileSync } from "fs";
 const port = process.env.PORT;
 
 const app = express();
@@ -38,13 +38,10 @@ app.get("/", (req, res) => {
 const specs = swaggerJsDoc(options)
 
 app.use('/api-docs', SwaggerUI.serve, SwaggerUI.setup(specs))
-// sendOtp("09053217299")
-// const otp = generateOtp()
-// console.log(otp)
-// console.log(port)
-// https.createServer({
-//     cert: fs.readFileSync("cert.fullchain.pem","utf-8"),
-//     key: fs.readFileSync("cert.privkey.pem", "utf-8")
-// }, 
-app.listen(3001, () => console.log(`server running on port 3001`))
-// app.listen(3000, () => console.log(`server running on port 3000`));
+
+https.createServer({
+    cert: readFileSync("cert.fullchain.pem","utf-8"),
+    key: readFileSync("cert.privkey.pem", "utf-8")
+}, app)
+.listen(443, () => console.log(`server running on port 443`))
+
