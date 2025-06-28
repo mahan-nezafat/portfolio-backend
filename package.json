@@ -3,11 +3,14 @@
    "version": "1.0.0",
    "description": "backend of portfolio website",
    "main": "index.js",
+   "type": "module",
    "scripts": {
+   
       "start": "npx tsx src/index.ts",
       "test": "jest",
       "typeorm": "typeorm-ts-node-commonjs"
    },
+   
    "author": "mahan",
    "license": "MIT",
    "dependencies": {
