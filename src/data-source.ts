@@ -13,12 +13,15 @@ export const AppDataSource = new DataSource({
     port: Number(process.env.DB_PORT),
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: "postgres",
+    database: "neondb",
     synchronize: true,
     logging: true,
     entities: ['./src/entities/*.ts'],
     migrations: [],
     subscribers: [],
+    ssl: true,
+    
+
 });
 
 // AppDataSource.initialize()
