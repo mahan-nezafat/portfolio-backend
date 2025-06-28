@@ -4,11 +4,12 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "src/index.ts"
+      "dest": "src/index.ts",
     }
   ],
   "functions": {
     "index.ts": {
       "runtime": "nodejs20.x"
     }
+  }
 }
