@@ -15,7 +15,7 @@ export interface IBlog {
     author_summary: string;
     content: object[];
     language: string;
-    
+    shortDescription: string
 }
 
 export class BlogInstance implements IBlog {
@@ -30,6 +30,7 @@ export class BlogInstance implements IBlog {
     author_summary: string;
     content: object[];
     language: string;
+    shortDescription: string
    
 
 

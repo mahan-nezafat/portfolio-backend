@@ -28,7 +28,8 @@ export class User extends BaseEntity {
         nullable: true
     })
     age: number;
-
+    @Column("varchar")
+    avatarSrc: string
     @Column({
         type: "varchar",
         nullable: true

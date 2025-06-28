@@ -18,8 +18,13 @@ export const getAllBlogs = async (): Promise<Array<IBlog>> => {
                 category: true,
                 readtime: true,
                 author_summary: true,
-                content: true,
-                language: true,
+                shortDescription: true,
+                created_at: true
+                
+            },
+            relations: {
+                user: true,
+            
             },
         });
         console.log(blogs, typeof blogs);
@@ -37,6 +42,7 @@ export const getOneBlog = async (id: number): Promise<IBlog> => {
                 title: true,
                 status: true,
                 thumbnail: true,
+                shortDescription: true,
                 upvote: true,
                 views: true,
                 category: true,
@@ -66,6 +72,7 @@ export const addOneBlog = async (blogData:
     status: status,
     category: string,
     readtime: number,
+    shortDescription: string,
     authorSummary: string,
     content: object[],
     language: string,
@@ -85,6 +92,7 @@ export const addOneBlog = async (blogData:
             author_summary: blogData.authorSummary,
             content: blogData.content,
             language: blogData.language,
+            shortDescription: blogData.shortDescription,
             user,
         });
         const resultBlog: IBlog = {
@@ -99,6 +107,7 @@ export const addOneBlog = async (blogData:
             author_summary: newBlog.author_summary,
             content: newBlog.content,
             language: newBlog.language,
+            shortDescription: newBlog.shortDescription,
         };
         console.log(resultBlog);
         return resultBlog;
@@ -118,7 +127,8 @@ export const updateOneBlog = async (
     readtime?: number,
     authorSummary?: string,
     content?: object[],
-    language?: string
+    language?: string,
+    shortDescription?: string
     },
     thumbnailFile: string
 ): Promise<object> => {
@@ -133,6 +143,7 @@ export const updateOneBlog = async (
             author_summary: updatedData.authorSummary,
             content: updatedData.content,
             language: updatedData.language,
+            shortDescription: updatedData.shortDescription
         });
         return updatedBlog;
     } catch (error) {
@@ -174,6 +185,22 @@ export const getOldestBlogs = async (): Promise<Array<IBlog>> => {
         const blogs = await Blog.find({
             order: {
              created_at: "ASC"
+            }
+             
+         })
+         console.log(blogs)
+         return blogs
+    } catch (error) {
+        console.log(error)
+    }
+    
+}
+
+export const getPopularBlogs = async (): Promise<Array<IBlog>> => {
+    try {
+        const blogs = await Blog.find({
+            order: {
+             views: "DESC"
             }
              
          })

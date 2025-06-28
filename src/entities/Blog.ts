@@ -22,7 +22,8 @@ export class Blog extends BaseEntity {
 
     @Column("varchar")
     status: status;
-
+    @Column("varchar")
+    shortDescription: string;
     @Column({
         type: "varchar",
         nullable: true,
