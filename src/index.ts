@@ -39,9 +39,9 @@ const specs = swaggerJsDoc(options)
 
 app.use('/api-docs', SwaggerUI.serve, SwaggerUI.setup(specs))
 
-https.createServer({
-    cert: readFileSync("cert.fullchain.pem","utf-8"),
-    key: readFileSync("cert.privkey.pem", "utf-8")
-}, app)
-.listen(443, () => console.log(`server running on port 443`))
+// https.createServer({
+//     cert: readFileSync("cert.fullchain.pem","utf-8"),
+//     key: readFileSync("cert.privkey.pem", "utf-8")
+// }, app)
+app.listen(3000, () => console.log(`server running on port 443`))
 
