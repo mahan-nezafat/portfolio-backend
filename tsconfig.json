@@ -10,8 +10,8 @@
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
-    "noEmitOnError": true,
-
+    "noEmitOnError": false,
+    "noEmit": true,
     "noImplicitAny": false,
     "strict": false,
     "esModuleInterop": true,
