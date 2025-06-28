@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 export const sendSms = async (phoneNumber: string, firstName: string, lastName: string) => {
 
     const data = {

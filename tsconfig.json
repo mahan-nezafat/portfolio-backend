@@ -10,7 +10,7 @@
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
-    "noEmitOnError": false,
+    "noEmitOnError": true,
 
     "noImplicitAny": false,
     "strict": false,

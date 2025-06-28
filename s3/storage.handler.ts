@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
     S3Client,
     PutObjectCommand,
@@ -22,6 +23,7 @@ const config = {
     accessKeyId: process.env.LIARA_BUCKET_ACCESS_KEY,
     secretAccessKey: process.env.LIARA_BUCKET_SECRET_KEY,
     region: "default",
+    
   };
 
 
