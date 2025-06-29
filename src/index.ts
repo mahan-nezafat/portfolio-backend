@@ -3,12 +3,12 @@ import "dotenv/config";
 // import https from "https"
 import morgan from "morgan";
 import helmet from "helmet";
-import blogsRouter from "./api/routes/blogs.router.js";
-import projectsRouter from "./api/routes/projects.router.js";
-import servicesRouter from "./api/routes/services.router.js";
-import authRouter from "./api/routes/auth.router.js";
-import panelRouter from "./api/routes/panel.router.js";
-import { accessLogStream } from "./api/handlers/logs.handler.js";
+import blogsRouter from "./api/routes/blogs.router";
+import projectsRouter from "./api/routes/projects.router";
+import servicesRouter from "./api/routes/services.router";
+import authRouter from "./api/routes/auth.router";
+import panelRouter from "./api/routes/panel.router";
+import { accessLogStream } from "./api/handlers/logs.handler";
 // import swaggerJsDoc from 'swagger-jsdoc'
 // import swaggerUi from 'swagger-ui'
 // import {options}   from './api/swagger/options.js'

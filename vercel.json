@@ -5,14 +5,14 @@
   "buildCommand": "npm run build",
   "builds": [
     {
-      "src": "dist/src/index.js",
+      "src": "build/index.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/src/index.js"
+      "dest": "build/index.js"
     }
   ]
 
