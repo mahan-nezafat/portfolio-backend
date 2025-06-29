@@ -1,6 +1,6 @@
 import express from "express";
 import "dotenv/config";
-import https from "https"
+// import https from "https"
 import morgan from "morgan";
 import helmet from "helmet";
 import blogsRouter from "./api/routes/blogs.router.js";
@@ -9,13 +9,13 @@ import servicesRouter from "./api/routes/services.router.js";
 import authRouter from "./api/routes/auth.router.js";
 import panelRouter from "./api/routes/panel.router.js";
 import { accessLogStream } from "./api/handlers/logs.handler.js";
-import swaggerJsDoc from 'swagger-jsdoc'
-import swaggerUi from 'swagger-ui'
-import {options}   from './api/swagger/options.js'
-import  SwaggerUI from "swagger-ui-express";
+// import swaggerJsDoc from 'swagger-jsdoc'
+// import swaggerUi from 'swagger-ui'
+// import {options}   from './api/swagger/options.js'
+// import  SwaggerUI from "swagger-ui-express";
 
 import cors from 'cors'
-import { readFileSync } from "fs";
+// import { readFileSync } from "fs";
 const port = process.env.PORT;
 
 const app = express();
@@ -35,9 +35,9 @@ app.use("/auth", authRouter);
 app.get("/", (req, res) => {
     res.send("hello from https to you")
 })
-const specs = swaggerJsDoc(options)
+// const specs = swaggerJsDoc(options)
 
-app.use('/api-docs', SwaggerUI.serve, SwaggerUI.setup(specs))
+// app.use('/api-docs', SwaggerUI.serve, SwaggerUI.setup(specs))
 
 // https.createServer({
 //     cert: readFileSync("cert.fullchain.pem","utf-8"),
