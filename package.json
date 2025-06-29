@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "backend of portfolio website",
   "main": "dist/index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
-    "build": "esbuild src/index.ts --platform=node --format=esm --bundle --outfile=api/index.js",
+    "build": "esbuild src/index.ts --platform=node --format=cjs --bundle --outfile=api/index.js",
     "start": "tsx src/index.ts",
     "test": "jest",
     "typeorm": "typeorm-ts-node-commonjs"
