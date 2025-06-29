@@ -1,15 +1,13 @@
 {
+
+ 
   "version": 2,
-  "builds": [
-    {
-      
-      "src": "src/index.ts",
-      "use": "@vercel/node",
-      "config": {
-        "runtime": "nodejs20.x"
-      }
-    }
-  ],
+  "installCommand": "npm install",
+  "outputDirectory": "build",
+  "functions": {
+    "runtime": "tsx src/index.ts"
+  },
+
   "routes": [
     {
       "src": "/(.*)",
