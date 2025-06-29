@@ -1,6 +1,6 @@
 {
 
-  "$schema": "https://openapi.vercel.sh/vercel.json",
+ 
   "version": 2,
   "installCommand": "npm install",
   "outputDirectory": "build",
@@ -8,18 +8,13 @@
   "builds": [
     {
       
-      "src": "src/index.js",
+      "src": "build/src/index.js",
       "use": "@vercel/node",
       "config": {
         "runtime": "nodejs20.x"
       }
     }
-  ],
-
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "src/index.js"
-    }
   ]
+
+  
 }
