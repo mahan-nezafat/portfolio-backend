@@ -10,7 +10,7 @@
   ],
   "functions": {
     "api/index.js": {
-      "runtime": "nodejs20.0"
+      "runtime": "@vercel/node"
     }
   }
 }
