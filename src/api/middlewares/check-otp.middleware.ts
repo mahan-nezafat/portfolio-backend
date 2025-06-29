@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { checkOtp } from "../handlers/otp.handler";
+import { checkOtp } from "../handlers/otp.handler.js";
 
 export const checkOtpMiddleware = async (
     req: Request,

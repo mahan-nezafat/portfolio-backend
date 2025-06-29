@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
-import { IProject } from "../../repository/projects/interface.projects";
-import { connectToDb, disconnectFromDb } from "../handlers/adapter";
+import { IProject } from "../../repository/projects/interface.projects.js";
+import { connectToDb, disconnectFromDb } from "../handlers/adapter.js";
 import {
     addOneProject,
     deleteOneProject,
     getAllProjects,
     getOneProject,
     updateOneProject,
-} from "../../repository/projects/repository.projects";
+} from "../../repository/projects/repository.projects.js";
 
 export const getProjects = async (
     req: Request,

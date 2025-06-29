@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express"
-import { sendOtp } from "../handlers/otp.handler"
+import { sendOtp } from "../handlers/otp.handler.js"
 
 export const sendOtpMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     const {phoneNumber} = req.body

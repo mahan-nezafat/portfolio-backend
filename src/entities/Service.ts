@@ -7,8 +7,9 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     JoinColumn,
+    Relation,
 } from "typeorm";
-import { User } from "./User";
+import { User } from "./User.js";
 
 @Entity()
 export class Service extends BaseEntity {
@@ -34,5 +35,5 @@ export class Service extends BaseEntity {
     @JoinColumn({
         name: "author_id",
     })
-    user: User;
+    user: Relation<User>;
 }

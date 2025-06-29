@@ -9,9 +9,9 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
 } from "typeorm";
-import { User } from "./User";
-import { Comment } from "./Comment";
-import { status } from "../repository/blogs/interface.blogs";
+import { User } from "./User.js";
+import { Comment } from "./Comment.js";
+import { status } from "../repository/blogs/interface.blogs.js";
 
 @Entity()
 export class Blog extends BaseEntity {

@@ -1,16 +1,16 @@
-import { IService } from "../../repository/services/interface.services";
+import { IService } from "../../repository/services/interface.services.js";
 import {
     addOneService,
     deleteOneService,
     getAllServices,
     getOneService,
     updateOneService,
-} from "../../repository/services/repository.services";
-import { addOneUser, getOneUser, updateOneUser } from "../../repository/users/repository.users";
-import { connectToDb, disconnectFromDb } from "../handlers/adapter";
+} from "../../repository/services/repository.services.js";
+import { addOneUser, getOneUser, updateOneUser } from "../../repository/users/repository.users.js";
+import { connectToDb, disconnectFromDb } from "../handlers/adapter.js";
 import { Request, Response } from "express";
-import { signToken } from "../handlers/jwt.handler";
-import { sendSms } from "../handlers/sms.handler";
+import { signToken } from "../handlers/jwt.handler.js";
+import { sendSms } from "../handlers/sms.handler.js";
 
 export const getServices = async (
     req: Request,

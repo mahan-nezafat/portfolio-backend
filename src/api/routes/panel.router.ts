@@ -1,12 +1,12 @@
 import express from 'express';
-import { createBlog, deleteBlog, getBlog, getBlogs, updateBlog } from '../controllers/blogs.controller';
-import { createService, deleteService, getService, getServices, updateService } from '../controllers/services.controller';
-import { createProject, deleteProject, getProject, getProjects, updateProject } from '../controllers/projects.controller';
-import { validateBlogMiddleware, validateProjectMiddleware, validateServiceMiddleware } from '../middlewares/validation.middleware';
-import multer from 'multer'
-import {upload} from '../../../s3/storage.handler'
-import { uploadThumbnailMiddleware } from '../middlewares/upload.middleware';
-import { verifyJwtMiddleware } from '../middlewares/jwt.middleware';
+import { createBlog, deleteBlog, getBlog, getBlogs, updateBlog } from '../controllers/blogs.controller.js';
+import { createService, deleteService, getService, getServices, updateService } from '../controllers/services.controller.js';
+import { createProject, deleteProject, getProject, getProjects, updateProject } from '../controllers/projects.controller.js';
+import { validateBlogMiddleware, validateProjectMiddleware, validateServiceMiddleware } from '../middlewares/validation.middleware.js';
+// import multer from 'multer'
+import {upload} from '../../../s3/storage.handler.js'
+// import { uploadThumbnailMiddleware } from '../middlewares/upload.middleware';
+import { verifyJwtMiddleware } from '../middlewares/jwt.middleware.js';
 const panelRouter = express.Router()
 // const upload = multer({dest: 'uploads'})
 // blogs

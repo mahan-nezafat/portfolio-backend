@@ -1,7 +1,7 @@
-import { Comment } from "../../entities/Comment";
-import { getOneBlog } from "../blogs/repository.blogs";
-import { getOneUser } from "../users/repository.users";
-import { IComment } from "./interface.comments";
+import { Comment } from "../../entities/Comment.js";
+import { getOneBlog } from "../blogs/repository.blogs.js";
+import { getOneUser } from "../users/repository.users.js";
+import { IComment } from "./interface.comments.js";
 
 // add one comment  
 

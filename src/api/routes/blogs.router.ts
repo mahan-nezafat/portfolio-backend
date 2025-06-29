@@ -4,8 +4,8 @@ import {
     getBlog,
     getSortedBlogs,
     incUpvote,
-} from "../controllers/blogs.controller";
-import { blogsErrorMiddleware } from "../middlewares/errors.middleware";
+} from "../controllers/blogs.controller.js";
+import { blogsErrorMiddleware } from "../middlewares/errors.middleware.js";
 const blogsRouter = express.Router();
 
 blogsRouter.get("/", getBlogs);

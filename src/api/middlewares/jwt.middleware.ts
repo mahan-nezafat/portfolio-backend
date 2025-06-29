@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { verifyToken } from "../handlers/jwt.handler";
+import { verifyToken } from "../handlers/jwt.handler.js";
 
 export const verifyJwtMiddleware = (
     req: Request,

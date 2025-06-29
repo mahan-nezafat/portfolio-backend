@@ -1,8 +1,8 @@
 // @ts-nocheck
 
 import * as dotenv from "dotenv";
-import { generateOtp } from "../../utils/generate-otp";
-import { deleteOtp, isCached, loadOtp, saveOtp } from "../../utils/cache";
+import { generateOtp } from "../../utils/generate-otp.js";
+import { deleteOtp, isCached, loadOtp, saveOtp } from "../../utils/cache.js";
 dotenv.config({ path: "../../../.env" });
 
 interface OtpSMS {

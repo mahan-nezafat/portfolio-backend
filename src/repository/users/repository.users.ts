@@ -1,5 +1,5 @@
-import { User } from "../../entities/User";
-import { role } from "./interface.users";
+import { User } from "../../entities/User.js";
+import { role } from "./interface.users.js";
 
 // find one user
 

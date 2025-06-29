@@ -1,7 +1,7 @@
-import { Blog } from "../../entities/Blog";
-import { getOneUser } from "../users/repository.users";
-import { BlogInstance, IBlog, status } from "./interface.blogs";
-import { AppDataSource } from "../../data-source";
+import { Blog } from "../../entities/Blog.js";
+import { getOneUser } from "../users/repository.users.js";
+import { BlogInstance, IBlog, status } from "./interface.blogs.js";
+import { AppDataSource } from "../../data-source.js";
 
 
 // get all blogs

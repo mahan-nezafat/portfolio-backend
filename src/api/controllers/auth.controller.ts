@@ -1,9 +1,9 @@
-import { addAdminUser, addOneUser, getOneUser } from "../../repository/users/repository.users"
-import { connectToDb, disconnectFromDb } from "../handlers/adapter"
+import { addAdminUser, addOneUser, getOneUser } from "../../repository/users/repository.users.js"
+import { connectToDb, disconnectFromDb } from "../handlers/adapter.js"
 import { NextFunction, Request, Response } from "express"
-import { decodeToken, signToken } from "../handlers/jwt.handler"
+import { decodeToken, signToken } from "../handlers/jwt.handler.js"
 import * as dotenv from 'dotenv'
-import { checkOtp, sendOtp } from "../handlers/otp.handler"
+// import { checkOtp, sendOtp } from "../handlers/otp.handler"
 // TO DO -- error middleware 
 // TO DO -- validation handler and middleware for requests -- done
 // TO DO -- redirect middleware / redirect if success or if failed -- done

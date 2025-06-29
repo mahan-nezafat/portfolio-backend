@@ -1,9 +1,9 @@
 import { Request, Response } from "express"
-import { IBlog } from "../../repository/blogs/interface.blogs"
-import { connectToDb, disconnectFromDb } from "../handlers/adapter"
-import { addOneBlog, deleteOneBlog, getAllBlogs, getOldestBlogs, getOneBlog, getRecentBlogs, incrementUpvotes, incrementViews, updateOneBlog } from "../../repository/blogs/repository.blogs"
-import multer from 'multer'
-import { getFileUrl } from "../../../s3/storage.handler"
+import { IBlog } from "../../repository/blogs/interface.blogs.js"
+import { connectToDb, disconnectFromDb } from "../handlers/adapter.js"
+import { addOneBlog, deleteOneBlog, getAllBlogs, getOldestBlogs, getOneBlog, getRecentBlogs, incrementUpvotes, incrementViews, updateOneBlog } from "../../repository/blogs/repository.blogs.js"
+// import multer from 'multer'
+// import { getFileUrl } from "../../../s3/storage.handler"
 // TO DO
     // -- CREATE HANDLER FOR SORT REQUEST
     // -- CREATE MIDDLEWARE FOR ERROR MANAGEMENT

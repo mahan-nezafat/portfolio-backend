@@ -11,3 +11,4 @@ src/*/*/*.js
 *.pem
 logs
 uploads
+dist

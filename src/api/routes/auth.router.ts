@@ -1,11 +1,11 @@
 import express from 'express';
-import { loginUser, signUpAdminUser, signUpUser } from '../controllers/auth.controller';
-import { verifyJwtMiddleware } from '../middlewares/jwt.middleware';
-import { validateAuth } from '../middlewares/validation.middleware';
-import { loginErrorMiddleware, signUpErrorMiddleware } from '../middlewares/errors.middleware';
-import {  checkOtpMiddleware } from '../middlewares/check-otp.middleware';
-import { requestConsultation } from '../controllers/services.controller';
-import { sendOtpMiddleware } from '../middlewares/send-otp';
+import { loginUser, signUpAdminUser, signUpUser } from '../controllers/auth.controller.js';
+import { verifyJwtMiddleware } from '../middlewares/jwt.middleware.js';
+import { validateAuth } from '../middlewares/validation.middleware.js';
+import { loginErrorMiddleware, signUpErrorMiddleware } from '../middlewares/errors.middleware.js';
+import {  checkOtpMiddleware } from '../middlewares/check-otp.middleware.js';
+import { requestConsultation } from '../controllers/services.controller.js';
+import { sendOtpMiddleware } from '../middlewares/send-otp.js';
 const authRouter = express.Router()
 
   

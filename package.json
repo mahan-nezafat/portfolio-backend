@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "build": "esbuild src/index.ts --bundle  --platform=node --outfile=build/src/index.js --format=esm",
+    "build": "tsc",
     "start": "tsx src/index.ts",
     "test": "jest",
     "typeorm": "typeorm-ts-node-commonjs"

@@ -7,11 +7,11 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
 } from "typeorm";
-import { Comment } from "./Comment";
-import { Project } from "./Project";
-import { Blog } from "./Blog";
-import { Service } from "./Service";
-import { role } from "../repository/users/interface.users";
+import { Comment } from "./Comment.js";
+import { Project } from "./Project.js";
+import { Blog } from "./Blog.js";
+import { Service } from "./Service.js";
+import { role } from "../repository/users/interface.users.js";
 @Entity()
 export class User extends BaseEntity {
     @PrimaryGeneratedColumn()

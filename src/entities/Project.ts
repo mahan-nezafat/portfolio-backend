@@ -1,5 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BaseEntity, CreateDateColumn, UpdateDateColumn, JoinColumn } from "typeorm";
-import { User } from "./User";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BaseEntity, CreateDateColumn, UpdateDateColumn, JoinColumn, Relation } from "typeorm";
+import { User } from "./User.js";
 
 @Entity()
 export class Project extends BaseEntity {
@@ -24,5 +24,5 @@ export class Project extends BaseEntity {
     @JoinColumn({
         name: 'author_id'
     })
-    user: User;
+    user: Relation<User>;
 }

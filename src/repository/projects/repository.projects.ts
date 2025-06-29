@@ -1,6 +1,6 @@
-import { Project } from "../../entities/Project";
-import { getOneUser } from "../users/repository.users";
-import { IProject } from "./interface.projects";
+import { Project } from "../../entities/Project.js";
+import { getOneUser } from "../users/repository.users.js";
+// import { IProject } from "./interface.projects";
 
 // get all projects
 

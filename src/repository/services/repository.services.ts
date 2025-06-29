@@ -1,6 +1,6 @@
-import { Service } from "../../entities/Service";
-import { getOneUser } from "../users/repository.users";
-import { IService } from "./interface.services";
+import { Service } from "../../entities/Service.js";
+import { getOneUser } from "../users/repository.users.js";
+// import { IService } from "./interface.services";
 
 // get all services
 
