@@ -25,15 +25,25 @@ export const getOneProject = async (id: number): Promise<object> => {
 export const addOneProject = async (projectPayLoad: {
     authorId: number;
     name: string;
-    description: string;
-    linkUrl: string;
+    tech: string;
+    link: string;
+    backgroundColor: string
+    thumbnailSrc: string
+    videoSrc: string
+    previewSrc: string
+    content: object[]
 }): Promise<object> => {
     try {
         const user = await getOneUser({id: projectPayLoad.authorId});
         const newProject = await Project.save({
             name: projectPayLoad.name,
-            description: projectPayLoad.description,
-            link: projectPayLoad.linkUrl,
+            link: projectPayLoad.link,
+            tech: projectPayLoad.tech,
+            background_color: projectPayLoad.backgroundColor,
+            thumbnail_src: projectPayLoad.thumbnailSrc,
+            video_src: projectPayLoad.videoSrc,
+            preview_src: projectPayLoad.previewSrc,
+            content: projectPayLoad.content,
             user,
         });
         return newProject;

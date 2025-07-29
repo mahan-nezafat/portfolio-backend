@@ -42,10 +42,10 @@ export class Blog extends BaseEntity {
     author_summary: string;
 
     @Column({
-        type: "jsonb",
+        type: "varchar",
         nullable: true,
     })
-    content: object[];
+    content: string;
 
     @Column("varchar")
     language: string;

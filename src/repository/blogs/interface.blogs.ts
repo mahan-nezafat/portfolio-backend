@@ -11,9 +11,9 @@ export interface IBlog {
     upvote: number;
     views: number;
     category: string;
-    readtime: number;
+    readTime: number;
     author_summary: string;
-    content: object[];
+    content: string
     language: string;
     shortDescription: string
 }
@@ -26,7 +26,7 @@ export class BlogInstance implements IBlog {
     upvote: number;
     views: number;
     category: string;
-    readtime: number;
+    readTime: number;
     author_summary: string;
     content: object[];
     language: string;

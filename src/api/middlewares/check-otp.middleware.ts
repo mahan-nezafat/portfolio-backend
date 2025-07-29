@@ -14,6 +14,7 @@ export const checkOtpMiddleware = async (
     } else if (authHeader && authHeader.includes("Bearer")) {
         return next();
     } else {
+        console.log(req.body)
         return res.status(400).json({
             message: "bad request",
             data: {

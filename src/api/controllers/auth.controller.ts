@@ -52,9 +52,9 @@ export const signUpUser = async (req: Request, res: Response): Promise<object> =
         
         await connectToDb()
         
-        const newUser = await addOneUser(body)
+        const newUser = await addOneUser({...body, role: "CUSTOMER"})  
         const payload = {
-            ...body,
+            ...body,    
             
         }
         const token = signToken(payload)
@@ -72,22 +72,37 @@ export const signUpUser = async (req: Request, res: Response): Promise<object> =
     }
 }
 
-export const loginUser = async (req: Request, res: Response): Promise<object> => {
+export const loginUser = async (req: Request, res: Response): Promise<void> => {
     try {
         await connectToDb()
-        const authHeader = req.headers.authorization
-        if(!authHeader) {
-            // checkotp
-        }
-        const decodedToken = decodeToken(authHeader.replace("Bearer ", ""))
-        // console.log(decodedToken.phoneNumber)
-        const user = await getOneUser(decodedToken.phoneNumber)
+        let user, token
 
-        await disconnectFromDb()
-        return res.status(200).json( {
-            message: 'user founded',
-            data: user
+        const authHeader = req.headers.authorization
+        if(authHeader) {
+            // checkotp
+            const decodedToken = decodeToken(authHeader.replace("Bearer ", ""))
+            user = await getOneUser(decodedToken.phoneNumber)
+        }else {
+             const payload = {
+            ...req.body,    
+            
+        }
+        token = signToken(payload)
+            const {phoneNumber} = req.body
+
+            user = await getOneUser(phoneNumber)
+        }
+        // console.log(decodedToken.phoneNumber)
+
+        console.log(user)
+        
+        res.status(200).json( {
+            ok: "ok",
+            message: 'login successful!',
+            data: user,
+            jwt: token
         })
+        return await disconnectFromDb()
     } catch (error) {
         console.log(error)
     }

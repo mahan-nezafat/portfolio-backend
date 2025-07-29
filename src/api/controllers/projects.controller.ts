@@ -34,7 +34,7 @@ export const getProject = async (
     res: Response
 ): Promise<object> => {
     try {
-        const { id } = req.query;
+        const { id } = req.query;   
         console.log(id);
         // check for correct request format
         if (!id || isNaN(Number(id))) {

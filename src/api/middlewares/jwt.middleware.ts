@@ -7,12 +7,14 @@ export const verifyJwtMiddleware = (
     next: NextFunction
 ) => {
     try {
+        const {otp} = req.body
+        
         const authHeader = req.headers.authorization;
+        if(!authHeader && otp)  return next()
         const valid = verifyToken(authHeader.replace("Bearer ", ""))
         if (valid) {
             next();
         }
-        // if(!authHeader && opt was valid) 
     } catch (error) {
         console.log(error)
     }

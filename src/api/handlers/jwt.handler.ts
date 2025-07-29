@@ -18,7 +18,7 @@ const signOption = {
 export const signToken = (payload: object) => {  
     const token = jwt.sign(payload, secretKey, {
         algorithm: "RS256",
-        expiresIn: "1h",
+        expiresIn: "1d",
     });
     console.log(token)
     return token;

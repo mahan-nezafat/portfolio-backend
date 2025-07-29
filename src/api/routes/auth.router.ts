@@ -35,7 +35,7 @@ authRouter.post('/signup/admin', validateAuth, signUpErrorMiddleware, checkOtpMi
 authRouter.post('/signup/', validateAuth, signUpErrorMiddleware, checkOtpMiddleware ,signUpUser)
 
 
-authRouter.post("/login", validateAuth, loginErrorMiddleware, checkOtpMiddleware, verifyJwtMiddleware, loginUser)
+authRouter.post("/login", validateAuth, loginErrorMiddleware,verifyJwtMiddleware, checkOtpMiddleware, loginUser)
 
 authRouter.post("/send-otp", sendOtpMiddleware)
 

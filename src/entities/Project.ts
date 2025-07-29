@@ -8,13 +8,22 @@ export class Project extends BaseEntity {
     @Column("varchar")
     name: string;
     @Column("varchar")
-    description: string; 
+    tech: string
+    @Column("varchar") 
+    background_color: string; 
     @Column("varchar")
     link: string;
     @Column({type:"varchar", nullable: true})
     thumbnail_src: string;
     @Column({type:"varchar", nullable: true})
     video_src: string;
+    @Column({type:"varchar", nullable: true})   
+    preview_src: string;
+     @Column({
+        type: "jsonb",
+        nullable: true,
+    })
+    content: object[];
     @CreateDateColumn()
     created_at: Date
     @UpdateDateColumn()
