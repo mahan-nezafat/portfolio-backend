@@ -3,6 +3,15 @@ import { role } from "./interface.users.js";
 
 // find one user
 
+export const getAllUsers = async (): Promise<Array<object>> =>  {
+    try {
+        const users = await User.find({})
+        return users
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const getOneUser = async (userData: {phoneNumber?: string, id?: number}) => {
     try {
         const user = await User.findOne({
