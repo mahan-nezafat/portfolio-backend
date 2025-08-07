@@ -15,7 +15,29 @@ export const getAllProjects = async (): Promise<object> => {
 // get one project by id
 export const getOneProject = async (id: number): Promise<object> => {
     try {
-        const project = await Project.findOne({ where: { id } });
+        const project = await Project.findOne({
+            select: {
+                id: true,
+                background_color: true,
+                content: true,
+                created_at: true,
+                name: true,
+                link: true,
+                tech: true,
+                user: {
+                    id: true
+                },
+                video_src: true,
+                
+
+            },
+            where: { id },
+            relations: {
+                user: true
+            }
+            
+        });
+            
         return project;
     } catch (error) {
         console.log(error);
@@ -28,9 +50,9 @@ export const addOneProject = async (projectPayLoad: {
     tech: string;
     link: string;
     backgroundColor: string
-    thumbnailSrc: string
+    thumbnailSrc?: string
     videoSrc: string
-    previewSrc: string
+    previewSrc?: string
     content: object[]
 }): Promise<object> => {
     try {

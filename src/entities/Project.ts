@@ -20,10 +20,10 @@ export class Project extends BaseEntity {
     @Column({type:"varchar", nullable: true})   
     preview_src: string;
      @Column({
-        type: "jsonb",
+        type: "varchar",
         nullable: true,
     })
-    content: object[];
+    content: string;
     @CreateDateColumn()
     created_at: Date
     @UpdateDateColumn()

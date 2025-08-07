@@ -20,7 +20,7 @@ export const getProjects = async (
             message: "ok",
             data: projects,
         });
-        await disconnectFromDb();
+        // await disconnectFromDb();
         return;
     } catch (error) {
         console.log(error);
@@ -43,7 +43,7 @@ export const getProject = async (
             });
             return;
         }
-        await connectToDb();
+        // await connectToDb();
         const project = await getOneProject(Number(id));
         // return if project not founded
         console.log(project);
@@ -51,14 +51,14 @@ export const getProject = async (
             res.status(404).json({
                 message: "project not founded!",
             });
-            await disconnectFromDb();
+            // await disconnectFromDb();
             return;
         } else {
             res.status(200).json({
                 message: "ok",
                 data: project,
             });
-            await disconnectFromDb();
+            // await disconnectFromDb();
             return project;
         }
     } catch (error) {
@@ -72,11 +72,11 @@ export const createProject = async (
 ): Promise<object> => {
     try {
         const body = req.body;
-        await connectToDb();
+        // await connectToDb();
 
         const newProject = await addOneProject(body);
         console.log(newProject);
-        await disconnectFromDb();
+        // await disconnectFromDb();
         return res.status(200).json({
             message: "new project added!",
             data: newProject,
@@ -109,10 +109,10 @@ export const updateProject = async (
 
         const { id } = req.params;
         const body = req.body;
-        await connectToDb();
+        // await connectToDb();
         const updatedProject = await updateOneProject(Number(id), body, thumbnailUrl, videoUrl);
         console.log(updatedProject);
-        await disconnectFromDb();
+        // await disconnectFromDb();
         return res.status(200).json({
             message: "project was updated!",
             data: updatedProject,
@@ -129,10 +129,10 @@ export const deleteProject = async (
     try {
         const { id } = req.params;
 
-        await connectToDb();
+        // await connectToDb();
         const deletedProject = await deleteOneProject(Number(id));
         console.log(deletedProject);
-        await disconnectFromDb();
+        // await disconnectFromDb();
         return res.status(200).json({
             message: "project was deleted!",
         });
