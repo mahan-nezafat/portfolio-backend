@@ -6,6 +6,8 @@ export const checkOtpMiddleware = async (
     res: Response,
     next: NextFunction
 ) => {
+        console.log("check")
+
     const { phoneNumber, otp } = req.body;
     const authHeader = req.headers.authorization;
     const data = await checkOtp(phoneNumber, otp);

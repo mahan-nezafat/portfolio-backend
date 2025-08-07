@@ -139,7 +139,11 @@ export const createBlog = async (
 ): Promise<object> => {
     try {
         
-        const body = req.body;
+        let thumbnail = req.file ? req.file.originalname : ''
+        const thumbnailSrc = `https://portfolio-storage.storage.iran.liara.space/${thumbnail}`
+        const body = {...req.body,
+            thumbnailSrc
+        };
         await connectToDb();
 
         const newBlog = await addOneBlog(body);

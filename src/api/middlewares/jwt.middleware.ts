@@ -7,11 +7,15 @@ export const verifyJwtMiddleware = (
     next: NextFunction
 ) => {
     try {
+        console.log("jwt")
         const {otp} = req.body
         
+        if(otp)  return next()
+        
         const authHeader = req.headers.authorization;
-        if(!authHeader && otp)  return next()
-        const valid = verifyToken(authHeader.replace("Bearer ", ""))
+
+        // const valid = authHeader ? verifyToken(authHeader.replace("Bearer ", "")) : null
+        const valid = verifyToken(req.cookies.jwt)
         if (valid) {
             next();
         }

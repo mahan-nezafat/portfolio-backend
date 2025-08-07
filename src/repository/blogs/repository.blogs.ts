@@ -11,20 +11,21 @@ export const getAllBlogs = async (): Promise<Array<IBlog>> => {
             select: {
                 id: true,
                 title: true,
-                status: true,
-                thumbnail: true,
+                thumbnail_src: true,
                 upvote: true,
                 views: true,
                 category: true,
-                readtime: true,
-                author_summary: true,
+                read_time: true,                
                 shortDescription: true,
-                created_at: true
-                
+                created_at: true,
+                user: {
+                    first_name: true,
+                    last_name:true
+                }
             },
             relations: {
                 user: true,
-            
+                
             },
         });
         console.log(blogs, typeof blogs);
@@ -41,15 +42,24 @@ export const getOneBlog = async (id: number): Promise<IBlog> => {
                 id: true,
                 title: true,
                 status: true,
-                thumbnail: true,
+                thumbnail_src: true,
                 shortDescription: true,
                 upvote: true,
                 views: true,
                 category: true,
-                readtime: true,
+                read_time: true,
                 author_summary: true,
                 content: true,
                 language: true,
+                created_at: true,
+                user: {
+                    id: true,
+                    first_name: true,
+                    last_name:true
+                },
+                comments: {
+                    
+                }
             },
             where: {
                 id: id,
@@ -76,6 +86,7 @@ export const addOneBlog = async (blogData:
     authorSummary: string,
     content: string,
     language: string,
+     thumbnailSrc?: string,
     authorId: number}
 ): Promise<IBlog> => {
     try {
@@ -85,10 +96,11 @@ export const addOneBlog = async (blogData:
             
             title: blogData.title,
             status: blogData.status,
+            thumbnail_src: blogData.thumbnailSrc,
             upvote: 0,
             views: 0,
             category: blogData.category,
-            readtime: blogData.readTime,
+            read_time: blogData.readTime,
             author_summary: blogData.authorSummary,
             content: blogData.content,
             language: blogData.language,
@@ -99,17 +111,17 @@ export const addOneBlog = async (blogData:
             id: newBlog.id,
             title: newBlog.title,
             status: newBlog.status,
-            thumbnail: newBlog.thumbnail,
+            thumbnail: newBlog.thumbnail_src,
             upvote: newBlog.upvote,
             views: newBlog.views,
             category: newBlog.category,
-            readTime: newBlog.readtime,
+            readTime: newBlog.read_time,
             author_summary: newBlog.author_summary,
             content: newBlog.content,
             language: newBlog.language,
             shortDescription: newBlog.shortDescription,
         };
-        console.log(resultBlog);
+        // console.log(resultBlog);
         return resultBlog;
     } catch (error) {
         console.log(error);
@@ -122,7 +134,7 @@ export const updateOneBlog = async (
     updatedData:{
     title?: string,
     status?: status,
-    thumbnail?: string,
+    thumbnailSrc?: string,
     category?: string,
     readTime?: number,
     authorSummary?: string,
@@ -137,9 +149,9 @@ export const updateOneBlog = async (
         const updatedBlog = await Blog.update(id, {
             status: updatedData.status,
             title: updatedData.title,
-            thumbnail: thumbnailFile,
+            thumbnail_src: thumbnailFile,
             category: updatedData.category,
-            readtime: updatedData.readTime,
+            read_time: updatedData.readTime,
             author_summary: updatedData.authorSummary,
             content: updatedData.content,
             language: updatedData.language,

@@ -28,7 +28,7 @@ export class Blog extends BaseEntity {
         type: "varchar",
         nullable: true,
     })
-    thumbnail: string;
+    thumbnail_src: string;
 
     @Column("int4")
     upvote: number;
@@ -37,7 +37,7 @@ export class Blog extends BaseEntity {
     @Column("varchar")
     category: string;
     @Column("int4")
-    readtime: number;
+    read_time: number;
     @Column("varchar")
     author_summary: string;
 

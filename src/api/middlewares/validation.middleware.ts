@@ -3,15 +3,20 @@ import * as yup from 'yup'
 export const validateBlogMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     try {
     
-    const body = req.body
-    console.log(req)
+        // parseInt(req.body.authorId, 10);
+    const body = {
+        ...req.body,
+        authorId: parseInt(req.body.authorId, 10)
+    }
+    // console.log(req.body, req.file)
     const blogSchema = yup.object().shape({
         authorId: yup.number().required("author id is needed").positive().integer().typeError("author id is a number").strict(),
         title: yup.string().required("title is needed").typeError("title must be string").label("blog title").strict(),
         status: yup.string().required("status must not be empty").typeError("status must be string").strict(),
         // thumbnail: yup.string().required("thumbnail must not be empty").typeError("thumbnail must be string").strict(),
         category: yup.string().required("category must not be empty").typeError("category must be string").strict(),
-        readTime: yup.number().required("readtime must not be empty").positive().integer().strict(),
+        readTime: yup.string().required("readtime must not be empty").strict(),
+        // positive().integer().strict(),
         authorSummary: yup.string().required("authorSummary must not be empty").typeError("authorSummary must be string").strict(),
         content: yup.string().required("content must be string").strict(),
         // language: yup.string().required("language must not be empty").typeError("language must be string").strict(),
@@ -32,7 +37,11 @@ export const validateBlogMiddleware = async (req: Request, res: Response, next: 
 export const validateServiceMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     try {
         
-    const body = req.body
+    // const body = req.body
+     const body = {
+        ...req.body,
+        authorId: parseInt(req.body.authorId, 10)
+    }
     const serviceSchema = yup.object().shape({
         authorId: yup.number().required("author id is needed").positive().integer().typeError("author id is a number").strict(),
         name: yup.string().required("name is needed").typeError("name must be string").strict(),
@@ -56,7 +65,10 @@ export const validateServiceMiddleware = async (req: Request, res: Response, nex
 export const validateProjectMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     try {
        
-    const body = req.body
+   const body = {
+        ...req.body,
+        authorId: parseInt(req.body.authorId, 10)
+    }
     const projectSchema = yup.object().shape({
         authorId: yup.number().required("author id is needed").positive().integer().typeError("author id is a number").strict(),
         name: yup.string().required("name is needed").typeError("name must be string").strict(),
@@ -81,8 +93,9 @@ export const validateProjectMiddleware = async (req: Request, res: Response, nex
 
 export const validateAuth = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        console.log("valid")
        
-    const body = req.body
+    const body = {...req.body}
     const authSchema = yup.object().shape({
         firstName: yup.string().required("first name is needed").typeError("first name is a number").strict(),
         lastName: yup.string().required("last name is needed").typeError("last name must be string").strict(),
