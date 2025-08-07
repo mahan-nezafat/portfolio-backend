@@ -1,7 +1,11 @@
 import { AppDataSource } from "../../data-source.js"
 
 export const connectToDb = async () => {
-    return await AppDataSource.initialize()
+    if(!AppDataSource.isInitialized) {
+
+        await AppDataSource.initialize()
+        return console.log('connected to db')
+    }else return console.log('db is already connected')
 
 }
 

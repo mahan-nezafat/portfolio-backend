@@ -9,6 +9,7 @@ import servicesRouter from "./api/routes/services.router";
 import authRouter from "./api/routes/auth.router";
 import panelRouter from "./api/routes/panel.router";
 import { accessLogStream } from "./api/handlers/logs.handler";
+import cookieParser from "cookie-parser"
 // import swaggerJsDoc from 'swagger-jsdoc'
 // import swaggerUi from 'swagger-ui'
 // import {options}   from './api/swagger/options.js'
@@ -23,7 +24,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan("combined", {stream: accessLogStream}));
 app.use(helmet());
-app.use(cors())
+app.use(cors({
+  
+  credentials: true,
+}))
+app.use(cookieParser())
 const router = express.Router();
 app.use("/", router);
 app.use("/blogs", blogsRouter);
@@ -44,4 +49,11 @@ app.get("/", (req, res) => {
 //     key: readFileSync("cert.privkey.pem", "utf-8")
 // }, app)
 app.listen(3000, () => console.log(`server running on port 3000`))
+
+setInterval(() => {
+  const mem = process.memoryUsage();
+  console.log(`Heap: ${(mem.heapUsed / 1024 / 1024).toFixed(2)} MB`);
+  console.log(`RSS: ${(mem.rss / 1024 / 1024).toFixed(2)} MB`);
+}, 3600 * 1000);
+
 

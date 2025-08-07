@@ -112,7 +112,7 @@ export const upload = multer({
       s3: client,
       bucket: process.env.BUCKET_NAME,
       key: function (req, file, cb) {
-        console.log(file);
+        // console.log(file);
         cb(null, file.originalname);
       },
     }),
