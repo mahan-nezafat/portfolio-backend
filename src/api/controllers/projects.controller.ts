@@ -14,7 +14,7 @@ export const getProjects = async (
     res: Response
 ): Promise<Array<IProject>> => {
     try {
-        await connectToDb();
+        // await connectToDb();
         const projects = await getAllProjects();
         res.status(200).json({
             message: "ok",

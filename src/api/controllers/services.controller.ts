@@ -17,13 +17,13 @@ export const getServices = async (
     res: Response
 ): Promise<Array<IService>> => {
     try {
-        await connectToDb();
+        // await connectToDb();
         const projects = await getAllServices();
         res.status(200).json({
             message: "ok",
             data: projects,
         });
-        await disconnectFromDb();
+        // await disconnectFromDb();
         return;
     } catch (error) {
         console.log(error);
@@ -44,7 +44,7 @@ export const getService = async (
             });
             return;
         }
-        await connectToDb();
+        // await connectToDb();
 
         const service = await getOneService(Number(id));
 
@@ -52,7 +52,7 @@ export const getService = async (
             res.status(404).json({
                 message: "project not founded!",
             });
-            await disconnectFromDb();
+            // await disconnectFromDb();
             return;
         }
 
@@ -61,7 +61,7 @@ export const getService = async (
             data: service,
         });
 
-        await disconnectFromDb();
+        // await disconnectFromDb();
         return service;
     } catch (error) {
         console.log(error);
@@ -74,11 +74,11 @@ export const createService = async (
 ): Promise<object> => {
     try {
         const body = req.body;
-        await connectToDb();
+        // await connectToDb();
 
         const newService = await addOneService(body);
         console.log(newService);
-        await disconnectFromDb();
+        // await disconnectFromDb();
         return res.status(200).json({
             message: "new service added!",
             data: newService,
@@ -104,14 +104,14 @@ export const updateService = async (
         }
         const { id } = req.params;
         const body = req.body;
-        await connectToDb();
+        // await connectToDb();
         const updatedService = await updateOneService(
             Number(id),
             body,
             thumbnailUrl
         );
         console.log(updatedService);
-        await disconnectFromDb();
+        // await disconnectFromDb();
         return res.status(200).json({
             message: "service was updated!",
             data: updatedService,
@@ -128,10 +128,10 @@ export const deleteService = async (
     try {
         const { id } = req.params;
 
-        await connectToDb();
+        // await connectToDb();
         const deletedService = await deleteOneService(Number(id));
         console.log(deletedService);
-        await disconnectFromDb();
+        // await disconnectFromDb();
         return res.status(200).json({
             message: "service was deleted!",
         });
@@ -148,7 +148,7 @@ export const requestConsultation = async (
     // add the consult service to user requested services
     // sms user about their service being registered
     const {phoneNumber, firstName, lastName, otp, role} = req.body;
-    await connectToDb();
+    // await connectToDb();
     let user;
     user = await getOneUser(phoneNumber);
     if (!user) {
@@ -162,7 +162,7 @@ export const requestConsultation = async (
     const payload = {
         firstName, lastName, phoneNumber, role
     };
-    await disconnectFromDb();
+    // await disconnectFromDb();
     const token = signToken(payload);
         
     const smsRes = sendSms(phoneNumber, firstName, lastName)

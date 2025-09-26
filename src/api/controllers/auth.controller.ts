@@ -21,11 +21,11 @@ export const signUpAdminUser = async (req: Request, res: Response): Promise<obje
     };
     const token = signToken(payload);
 
-    await connectToDb();
+    // await connectToDb();
 
     const adminUser = await addAdminUser(body);
     console.log(adminUser);
-    await disconnectFromDb();
+    // await disconnectFromDb();
     return res.status(200).json({
       message: "admin user created!",
       data: {
@@ -48,7 +48,7 @@ export const signUpUser = async (req: Request, res: Response): Promise<object> =
   try {
     const body = req.body;
 
-    await connectToDb();
+    // await connectToDb();
 
     const newUser = await addOneUser({ ...body, role: "CUSTOMER" });
     const payload = {
@@ -56,7 +56,7 @@ export const signUpUser = async (req: Request, res: Response): Promise<object> =
     };
     const token = signToken(payload);
     // console.log(newUser)
-    await disconnectFromDb();
+    // await disconnectFromDb();
     return res.status(200).json({
       message: " user created!",
       data: {
@@ -70,7 +70,7 @@ export const signUpUser = async (req: Request, res: Response): Promise<object> =
 
 export const loginUser = async (req: Request, res: Response): Promise<any> => {
   try {
-    await connectToDb();
+    // await connectToDb();
     let user, token;
     const jwt = req.cookies.jwt
     console.log("controller");
@@ -85,7 +85,7 @@ export const loginUser = async (req: Request, res: Response): Promise<any> => {
         ...req.body,
       };
       const { phoneNumber } = req.body;
-      if (phoneNumber != "09053217299") {
+      if (phoneNumber != process.env.ADMIN) {
         return res.status(403).json({
           message: "you are not authorized",
         });

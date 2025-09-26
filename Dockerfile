@@ -1,9 +1,9 @@
 # Build stage
 FROM node:lts-alpine AS builder
 
-ARG IP
+# ARG IP
 
-ENV IP=${IP}
+# ENV IP=${IP}
 
 WORKDIR /backend
 
@@ -11,12 +11,17 @@ COPY package*.json ./
 RUN npm ci --only=production
 COPY . .
 
-# RUN npm install
+RUN npm install
 # Production stage
 FROM node:lts-alpine
 
 WORKDIR /backend
-COPY --from=builder /app ./
+COPY package*.json ./
+RUN npm ci --only=production
+COPY . .
+
+ENV NODE_OPTIONS="--max-old-space-size=64"
+COPY --from=builder /backend ./
 
 EXPOSE 3000
 

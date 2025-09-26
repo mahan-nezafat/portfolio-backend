@@ -14,13 +14,13 @@ import { addOneBlog, deleteOneBlog, getAllBlogs, getOldestBlogs, getOneBlog, get
 
 export const getBlogs = async (req:Request, res:Response): Promise<Array<IBlog>> => {
     try {
-        await connectToDb()
+        // await connectToDb()
         const blogs = await getAllBlogs()
         res.status(200).json({
             message: 'ok',
             data: blogs
         })
-        await disconnectFromDb()
+        // await disconnectFromDb()
         return blogs 
     } catch (error) {
         console.log(error)
@@ -40,7 +40,7 @@ export const getBlog = async (req:Request, res:Response): Promise<IBlog> => {
             })
             return
         }
-        await connectToDb()
+        // await connectToDb()
         const blog = await getOneBlog(Number(id))
         // return if blog not founded
         if(!blog || typeof blog === "undefined") {
@@ -57,7 +57,7 @@ export const getBlog = async (req:Request, res:Response): Promise<IBlog> => {
         
         // increase view per request
         await incrementViews(Number(id))
-        await disconnectFromDb()
+        // await disconnectFromDb()
         return blog
     } catch (error) {
         console.log(error)
@@ -73,7 +73,7 @@ export const getBlog = async (req:Request, res:Response): Promise<IBlog> => {
 export const getSortedBlogs = async (req:Request, res:Response): Promise<object> => {
     try {
         const {orderby} = req.query
-        await connectToDb()
+        // await connectToDb()
         let blogs: object;
         console.log(orderby)
         if(orderby === "oldest") {
@@ -82,7 +82,7 @@ export const getSortedBlogs = async (req:Request, res:Response): Promise<object>
             message: "sort was successful!",
             data: blogs
             })
-            await disconnectFromDb()
+            // await disconnectFromDb()
             return 
         }else if(orderby === "recent") {
             blogs = await getRecentBlogs()
@@ -90,7 +90,7 @@ export const getSortedBlogs = async (req:Request, res:Response): Promise<object>
             message: "sort was successful!",
             data: blogs
         })
-            await disconnectFromDb()
+            // await disconnectFromDb()
             return 
         
         }else {
@@ -98,7 +98,7 @@ export const getSortedBlogs = async (req:Request, res:Response): Promise<object>
                 message: 'recieved query was not founded!',
                 data: orderby
             })
-            await disconnectFromDb()
+            // await disconnectFromDb()
             return 
         }
         
@@ -118,14 +118,14 @@ export const incUpvote = async (req:Request, res:Response) => {
             })
             return
         }
-        await connectToDb()
+        // await connectToDb()
         const result = await incrementUpvotes(Number(id))
         if(result) {
             res.status(200).json({message: "upvote count increased!"})
             return disconnectFromDb() 
         }
         res.status(404).json({message: "blog not founded!"})
-        return disconnectFromDb() 
+        // return disconnectFromDb() 
         
     } catch (error) {
         console.log(error)
@@ -144,11 +144,11 @@ export const createBlog = async (
         const body = {...req.body,
             thumbnailSrc
         };
-        await connectToDb();
+        // await connectToDb();
 
         const newBlog = await addOneBlog(body);
         console.log(newBlog);
-        await disconnectFromDb();
+        // await disconnectFromDb();
         return res.status(200).json({
             message: "new blog added!",
             data: newBlog,
@@ -164,12 +164,12 @@ export const updateBlog = async (req: Request, res: Response): Promise<object> =
         const thumbnailUrl = `https://portfolio-storage.storage.iran.liara.space/${thumbnail}`
         const {id} = req.params
         const body = req.body
-        await connectToDb()
+        // await connectToDb()
         const updatedBlog = await updateOneBlog(Number(id), body, thumbnailUrl)
 
         
         console.log(updatedBlog)
-        await disconnectFromDb()
+        // await disconnectFromDb()
         return res.status(200).json({
             message: "blog was updated!",
             data: updateBlog
@@ -183,10 +183,10 @@ export const deleteBlog = async (req: Request, res: Response): Promise<object> =
     try {
         const {id} = req.params
        
-        await connectToDb()
+        // await connectToDb()
         const deletedBlog = await deleteOneBlog(Number(id))
         console.log(deletedBlog)
-        await disconnectFromDb()
+        // await disconnectFromDb()
         return res.status(200).json({
             message: "blog was deleted!"
         })
